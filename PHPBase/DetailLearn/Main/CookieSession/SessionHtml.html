@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Session</title>
+</head>
+
+
+<script language="JavaScript">
+//    *********************实例1 JS调用*************************
+//     "提交"按钮的单击事件下,调用自定义函数check()来验证表单元素是否为空,自定义函数check()
+    function check(form) {
+        if (form.user.value == ""){
+            alert("请输入用户名");
+            form.user.onfocus;
+            return false;
+        }
+        if (form.pwd.value == ""){
+            alert("请输入密码");
+            form.pwd.onfocus;
+            return false;
+        }
+        form.submit();
+    }
+
+
+</script>
+
+
+<body>
+
+<!--*********************实例1************************* ></!-->
+<!--
+设计登录页面,添加一个表单form,应用POST方法传参,
+action指向的数据处理页为default.php,
+添加一个用户名文本框并命名为user,
+添加一个密码域文本框并命名为pwd
+ ></!-->
+<form name="form1" method="post" action="Session.php">
+    <table width="521" height="394" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td valign="top" background="img.login.jpg">
+                <table width="521" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td height="24" align="right">用户名:</td>
+                        <td height="24" align="left"><input name="user" type="text" id="user" size="20"></td>
+                    </tr>
+                    <tr>
+                        <td height="24" align="right">密&nbsp;&nbsp;码:</td>
+                        <td height="24" align="left"><input name="pwd" type="password" id="pwd" size="20"></td>
+                    </tr>
+                    <tr align="center">
+                        <td height="24" colspan="2">
+                            <input type="submit" name="Submit" value="提交" onclick="return check(form);">
+                            <input type="reset" name="Submit2" value="重填">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="76" align="right">
+                            <span class="style1">超级用户:tsoft<br/>密&nbsp;&nbsp;&nbsp;&nbsp;码:111&nbsp;&nbsp;</span>
+                        </td>
+                        <td>
+                            <span class="style1">普通用户:zts<br/>密&nbsp;&nbsp;&nbsp;&nbsp;码:000&nbsp;&nbsp;</span>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</form>
+<!--提交表单元素到数据处理页Session.php,首先使用session_start()初始化Session变量,后续详情见Session.php实例1></!-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

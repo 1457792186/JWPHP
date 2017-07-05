@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>JS</title>
+</head>
+
+<!--调用JS方法进行测试 ></!-->
+<!--内嵌JS ></!-->
+<script language="javascript">
+    //if else条件判断
+    function check() {
+        var year1 = form1.year.value;       //定义变量year1,获取提交表单元素值
+
+        if ((year1%4)==0 && (year1%100)!=0){    //若为闰年
+            alert(year1+"年是闰年");            //输出
+        }else {
+            alert(year1+"是平年");
+        }
+    }
+
+    //switch分支
+    function checkBook(books) {
+        switch(books){
+            case "生活书":
+                alert("选择图书:"+books);
+                break;
+            case "科技书":
+                alert("选择图书:"+books);
+                break;
+            case "科普书":
+                alert("选择图书:"+books);
+                break;
+            case "技术书":
+                alert("选择图书:"+books);
+                break;
+            case "杂志书":
+                alert("选择图书:"+books);
+                break;
+            default:
+                break;
+        }
+    }
+
+
+    //循环语句
+    function showCalculate(number) {//通过for循环自动输出自身相乘
+        if(number<=0){
+            alert("请输入大于0的数");
+            return;
+        }
+
+        for(i=0;i<=number;i++){
+            document.write(i+"*"+i+"="+i*i+"&nbsp&nbsp");//输出输出变量i自相乘结果
+        }
+    }
+
+
+    //验证表单元素为空
+    function mycheck(){
+        if (myform.user.value==""){
+            alert("用户名称不能为空");
+            myform.user.onfocus();  //返回表单元素位置
+            return false;
+        }
+        if (myform.pwd.value==""){
+            alert("用户密码不能为空");
+            myform.pwd.onfocus();  //返回表单元素位置
+            return false;
+        }
+    }
+
+    //显示对应的二级菜单,并设置二级菜单的名称及链接文件
+    function Lmenu(value) {
+        //自定义函数Lmenu()中,当value值与switch值相等时,执行case后的语句,实现二级菜单。执行后执行break跳出switch
+        switch (value){
+            case "新品":
+                submenu.innerHTML="<a href='#'>商品展示</a>|<a href='#'>销售排行榜</a>|<a href='#'>商品查询</a>";
+                break;
+            case "购物":
+                submenu.innerHTML="<a href='#'>添加商品</a>|<a href='#'>移除指定商品</a>|<a href='#'>清空购物车</a>|<a href='#'>查询购物车</a>|<a href='#'>填写订单信息</a>";
+                break;
+            case "会员":
+                submenu.innerHTML="<a href='#'>注册会员</a>|<a href='#'>修改会员</a>|<a href='#'>账户查询</a>";
+                break;
+            default:
+                break;
+        }
+    }
+
+
+    //编写JS,定义checkAll(),switchAll()和uncheckAll()分别实现复选框的全选、多选和不选
+    function checkAll(form3,status) {//全选
+        var elements = form3.getElementsByTagName('input');//获取input标签
+        for (var i = 0;i<elements.length;i++){  //根据标签长度执行循环
+            if (elements[i].type =="checkbox"){ //判断对象元素类型是否为checkbox
+                if (elements[i].checkbox==false){   //当checked值为false时改为true
+                    elements[i].checkbox=true;
+                }
+            }
+        }
+    }
+
+    function switchAll(form3,status) {//反选
+        var elements = form3.getElementsByTagName('input');//获取input标签
+        for (var i = 0;i<elements.length;i++){  //根据标签长度执行循环
+            if (elements[i].type =="checkbox"){ //判断对象元素类型是否为checkbox
+                if (elements[i].checkbox==false){   //当checked值为false时改为true
+                    elements[i].checkbox=true;
+                }else if(elements[i].checkbox==true){
+                    elements[i].checkbox=false;
+                }
+            }
+        }
+    }
+
+    function uncheckAll(form3,status) {//全不选
+        var elements = form3.getElementsByTagName('input');//获取input标签
+        for (var i = 0;i<elements.length;i++){  //根据标签长度执行循环
+            if (elements[i].type =="checkbox"){ //判断对象元素类型是否为checkbox
+                if (elements[i].checkbox==true){   //当checked值为true时改为false
+                    elements[i].checkbox=false;
+                }
+            }
+        }
+    }
+
+
+</script>
+
+<!--外部引用JS
+ <script src="PHPWebBaseJS.js" language="javascript">
+
+</script>
+
+ ></!-->
+
+<!--更多引用JS的调用见PHPWebBaseJS.js
+ ></!-->
+
+
+<body>
+
+<form name="form1" method="post" action="">
+    <span class="style2">检测年是否是闰年</span>
+    <select name="year">
+        <option value="2000">2000年</option>
+        <option value="2001">2001年</option>
+        <option value="2002">2002年</option>
+        <option value="2003">2003年</option>
+        <option value="2004">2004年</option>
+        <option value="2005">2005年</option>
+        <option value="2006">2006年</option>
+        <option value="2007">2007年</option>
+        <option value="2008">2008年</option>
+    </select>
+    <input type="submit" name="submit" value="检测" onclick="check();">
+</form>
+<!--input标记属性添加onclick事件,调用自定义函数check(),测试if条件判断 ></!-->
+
+
+
+<form name="form2" method="post" action="">
+    <span class="style2">选择图书</span>
+    <input type="radio" name="book" value="生活书" onclick="checkBook(this.value);">生活书
+    <input type="radio" name="book" value="科技书" onclick="checkBook(this.value);">科技书
+    <input type="radio" name="book" value="科普书" onclick="checkBook(this.value);">科普书
+    <input type="radio" name="book" value="技术书" onclick="checkBook(this.value);">技术书
+    <input type="radio" name="book" value="杂志书" onclick="checkBook(this.value);">杂志书
+</form>
+<!--input标记属性添加onclick事件,调用自定义函数checkBook(),测试switch分支 ></!-->
+
+
+<form name="myform" method="post" action="">
+    <table width="532" height="183" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCFF66" background="images/bg,jpg">
+        <tr>
+            <td height="71" colspan="2" align="center">&nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td width="281" align="left">
+                用户名:<input name="user" type="text" id="usser" size="20"><br>
+                密&nbsp;&nbsp;码:<input name="pwd" type="password" id="pwd" size="20">
+            </td>
+        </tr>
+        <tr>
+            <td height="43" align="center">
+                <input type="submit" name="submit" onclick="return mycheck();" value="登录">&nbsp;
+                <input type="reset" name="submit2" value="重置">
+            </td>
+        </tr>
+    </table>
+
+</form>
+<!--登录按钮添加onclick事件,调用自定义函数mycheck(),测试表单内容是否为空 ></!-->
+
+
+
+<!--应用JS脚本制作二级导航菜单
+    在网页适当位置添加一级导航菜单,调用JS的Lmenu()函数显示对应的二级菜单,调用时传递一个标记,即主菜单项的参数
+></!-->
+<table width="761" height="20" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td width="67" align="center">
+            <a href="PHPWebBase.php">首&nbsp;&nbsp;页</a>
+        </td>
+        <td width="75" align="center">
+            <a href="#" onmousemove="Lmenu('新品')">新品上市</a>
+        </td>
+        <td width="75" align="center">
+            <a href="#" onmousemove="Lmenu('购物')">购物车</a>
+        </td>
+        <td width="75" align="center">
+            <a href="#" onmousemove="Lmenu('会员')">会员中心</a>
+        </td>
+        <td width="61" align="center">
+            <a href="PHPWebBase.php">在线帮助</a>
+        </td>
+    </tr>
+</table>
+<!--在网页需要显示二级菜单的位置添加一个名为submenu的div层
+    如:当鼠标移动到"购物车"超链接上时,在指定位置显示"添加商品"、"移除指定商品"、"清空购物车"、"查询购物车"、"填写订单信息"等购物车二级菜单
+    ></!-->
+<div id="submenu" class="word_yellow">
+    &nbsp;
+</div>
+
+
+
+<!--应用JS脚本控制文本域和复选框></!-->
+<!--创建一个form表单,添加文本域和多个复选框,在文本域后添加一个超链接应用onclick事件调用JS中的document.getElementById()方法,清空文本域;
+       添加图像域,通过onclick()实现复选框的全选、多选和不选></!-->
+<form method="post" name="form3" id="form3" action="">
+    <table width="547" border="1" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF" bgcolor="#FBA720">
+        <tr>
+            <td height="35" colspan="5" bgcolor="#FFFFFF">
+                <span class="STYLE1">订单管理</span>
+            </td>
+        </tr>
+        <tr>
+            <td width="77" align="right" bgcolor="#FFFFFF">说明:</td>
+            <td width="389">
+                <textarea name="readme" cols="50" rows="10" id="readme"></textarea>
+            </td>
+            <td width="63" height="33" bgcolor="#FFFFFF" class="STYLE2">
+                <a href="#" onclick="javascript:document.getElementById('readme').value=';return false;'">
+                    <img src="img/12.png" width="60" height="25" border="0"/>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="6" align="right" bgcolor="#FFFFFF">操作:</td>
+            <td height="30" colspan="2" align="left" bgcolor="#FFFFFF">
+                <input name="PHP5" type="checkbox" id="PHP5" value="PHP"/>PHP编程词典
+            </td>
+        </tr>
+        <tr>
+           <td colspan="5" align="center" bgcolor="#FFFFFF">
+               <img src="img/01.jpg" onclick="checkAll(form3,status)" width="60" height="25"/>
+               <img src="img/02.jpg" onclick="switchAll(form3,status)" width="60" height="25"/>
+               <img src="img/03.jpg" onclick="uncheckAll(form3,status)" width="60" height="25"/>
+           </td>
+        </tr>
+    </table>
+</form>
+
+
+
+
+</body>
+</html>

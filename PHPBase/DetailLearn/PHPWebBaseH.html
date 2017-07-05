@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--
+No. 文字表記    10進表記   16進表記   文字      Comment
+001 &quot;  &#34;   &#x22;  """     quotation mark = APL quote
+002 &amp;   &#38;   &#x26;  "&"     ampersand
+003 &lt;    &#60;   &#x3C;  "<"     less-than sign
+004 &gt;    &#62;   &#x3E;  ">"     greater-than sign
+005 &nbsp;  &#160;  &#xA0;  " "     no-break space = non-breaking space
+
+></!-->
+
+
+<!--创建表单></!-->
+<!--表单结构如下:></!-->
+<!--
+    <form name="form_name" method="method" action="url" enctype="value" target="target_win">
+    * 标记的属性
+    * name         表单的名称
+    * method       设置表单的提交方式,GET或者POST方法
+    * action       指向处理该表单页面的URL(相对路径或者绝对路径)
+    * enctype      设置表单内容的编码方式
+    * target       设置返回信息发显示方式
+    *
+    * target属性值
+    * _blank       将返回信息显示在新的窗口中
+    * _parent      将返回信息显示在父级窗口中
+    * _self        将返回信息显示在当前窗口中
+    * _top         将返回信息显示在顶级窗口中
+    *
+    *
+    ></!-->
+
+<!--创建一个表单,以POST()方法提交到数据处理页PHPWebBase.php ></!-->
+<form name="form1" method="post" action="PHPWebBase.php"></form>
+
+<!--表单元素 ></!-->
+<!--输入域标记<input> ></!-->
+<!--常用的标记有文本框、按钮、单选按钮、复选框等 ></!-->
+<!--语法格式:></!-->
+<form>
+    <input name="file_name" type="type_name">
+</form>
+<!--参数name是指输入域的名称,参数type是指输入域的类型,一共提供了10类输入域,由tyoe属性决定 ></!-->
+
+<!--text ></!-->
+<input name="user" type="text" value="默认值" size="12" maxlength="100">
+<!--name为文本框名称,value为文本框默认值,size为文本框宽度(以字符为单位),maxlength指文本框最大输入字符数 ></!-->
+
+<!--password ></!-->
+<input name="pwd" type="password" value="默认值" size="12" maxlength="16">
+<!--密码域,用户在该文本框中输入的字符被替换为* ></!-->
+
+<!--file ></!-->
+<input name="file" type="file" formenctype="multipart/form-data" size="12" maxlength="100">
+<!--文件域,当文件上传时,可用来打开一个模式窗口以选择文件,然后将文件通过表单上传到服务器
+          上传文件时需要指明表单的属性formenctype="multipart/form-data"才能实现上传功能 ></!-->
+
+<!--image ></!-->
+<input name="imageField" type="image" src="Form/banner.png" width="120" height="24" onabort="0">
+<!--图像域是指可以用在提交按钮位置上的图片,具有按钮的功能 ></!-->
+
+<!--radio ></!-->
+<input name="sex" type="radio" value="1" checked>男
+<input name="sex" type="radio" value="0">女
+<!--单选按钮,用于设置一组选择项,checked用于设置该表单默认选择项 ></!-->
+
+<!--checkbox ></!-->
+<input name="checkbox" type="checkbox" value="1" checked>封面
+<input name="checkbox" type="checkbox" value="1" checked>正文内容
+<input name="checkbox" type="checkbox" value="0">价格
+<!--复选框,允许用户选择多个选择项checked属性用于设置默认选中 ></!-->
+
+<!--submit ></!-->
+<input name="submit" type="submit" value="提交">
+<!--将表单内容提交到服务器 ></!-->
+
+<!--reset ></!-->
+<input name="submit" type="reset" value="重置">
+<!--清除与重置表单内容,用于清除表单中所有文本框的内容,并使选项菜单单项恢复到初始值 ></!-->
+
+<!--button ></!-->
+<input name="submit" type="button" value="按钮">
+<!--按钮可以激发提交表单的动作,可以在用户需要修改表单时,将表单恢复到初始的状态,还可以依照程序的需要发挥其他作用
+   一般配合JavaScript脚本进行表单处理 ></!-->
+
+<!-- ></!-->
+<input name="bookid" type="hidden">
+<!--隐藏域,用于在表单中以隐含方式提交变量值,用户不可见,添加隐藏域目的在于收集或发送信息 ></!-->
+
+
+
+
+<!--选择域标记<select>和<option> ></!-->
+<!--可以建立一个列表或者表单,下拉选择框,语法: ></!-->
+<select name="name" size="value" multiple>
+    <option value="value" selected>选项1</option>
+    <option value="value">选项2</option>
+    <option value="value">选项3</option>
+</select>
+<!--参数name表示选择域的名称,参数size表示列表的行数,参数value表示菜单单选项,参数multiple表示以菜单方式显示数据,默认以列表方式显示数据 ></!-->
+
+<!--列表方式举例 ></!-->
+<select name="spec" id="spsec">
+    <option value="0" selected>网络编程</option>
+    <option value="1">办公自动化</option>
+    <option value="2">网页设计</option>
+    <option value="3">网页美工</option>
+</select>
+<!--下拉列表框,列表可以显示一定数量的选项,超出了这个数量,会自动出现滚动条,浏览页可以通过拖动滚动条来查看各个选项,selected属性用来设置该菜单时默认被选中 ></!-->
+
+<!--菜单方式举例 ></!-->
+<select name="spec" id="spec" multiple>
+    <option value="0" selected>网络编程</option>
+    <option value="1">办公自动化</option>
+    <option value="2">网页设计</option>
+    <option value="3">网页美工</option>
+</select>
+<!--multiple属性用于菜单列表select标记中,指定该选项的用户可以使用Shift和Ctrl键继续多选 ></!-->
+
+<!--文字域标记textarea ></!-->
+<!--用来建立多行的文字域,可以在其中输入更多的文本:语法 ></!-->
+<textarea name="name" rows=value cols=value value="value" warp="value">
+    ...文本内容
+</textarea>
+<!--参数name表示文字域的名称,参数rows表示文字域的行数,参数cols表示文字域的列数(rows和cols以字节为单位),参数value表示文字域的默认值,参数warp用于设定显示和送出是的换行方式
+    值为off表示不自动换行,值为hard表示自动硬回车换行,换行标记一同被发送到服务器,输出时也会换行,值为soft表示自动软回车换行,换行标记不会被发送到服务器,输出时任然为一列></!-->
+<textarea name="remark" rows="4" cols="20" id="remark">
+    请输入建议!
+</textarea>
+<!--文本域,也称为多行文本框,用于多行文本的编辑,warp属性默认为自动换行方式 ></!-->
+
+
+
+
+<!--使用POST()提交表单 ></!-->
+<form name="form1" method="post" action="PHPWebBase.php">
+    <table width="300" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td height="30">&nbsp;&nbsp;订单号;<!--&nbsp;为转义空格 ></!-->
+                <input type="text" name="user" size="20">
+                <input type="submit" name="submit" value="提交">
+            </td>
+
+        </tr>
+    </table>
+</form>
+<!--以上代码中,form表单的method属性指定了POST()方法的传递方式,并通过action指定了数据处理页为PHPWebBase.php ></!-->
+
+
+<!--使用GET()提交表单 ></!-->
+<form name="form1" method="get" action="PHPWebBase.php">
+    <table width="300" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td height="30">&nbsp;&nbsp;订单号;<!--&nbsp;为转义空格 ></!-->
+                <input type="text" name="user" size="20">
+                <input type="submit" name="submit" value="提交">
+            </td>
+
+        </tr>
+    </table>
+</form>
+<!--单击"提交"按钮,文本框内信息会显示在URL地址栏中,会暴露参数,若为非保密性的参数,采用GET()方法传递数据是可行的 ></!-->
+
+
+
+<!--PHP传递参数常用方法$_POST["name"]或$_GET["name"]或$_SESSION["name"] ></!-->
+<!--如:建立一个表单,设置method属性为POST,添加一个文本框,命名为user,获取表单元素的代码如下 ></!-->
+<?php
+    $user = $_POST["user"];
+?>
+<!--如:建立一个表单,设置method属性为GET,添加一个文本框,命名为user,获取表单元素的代码如下 ></!-->
+<?php
+    $user = $_GET["user"];
+?>
+<!--如:建立一个表单,添加一个文本框,命名为user,获取表单元素的代码如下,$_SESSION获取的变量值,在任意页面都可调用,但是$_SESSION很耗费系统资源 ></!-->
+<?php
+    $user = $_SESSION["user"];
+?>
+
+
+
+<!--引用外部文件 ></!-->
+<?php
+    include("PHPWebBase.php");
+?>
+
+
+
+<!--对表单元素的value进行赋值 ></!-->
+<?php
+    $hidden = "yy233";//为变量$hidden赋值
+?>
+<input type="hidden" name="ID" value="<?php echo $hidden;?>">
+<!--首先为变量$hidden赋予一个初值,之后将变量$hidden赋值给隐藏域,经常使用隐藏域存储一些无需显示的信息或传递的参数 ></!-->
+
+
+<!--获取文本框、密码域、隐藏域、按钮、文本域的值 ></!-->
+<form name="form1" method="post" action="">
+    用户名:<input name="user" type="text" size="20"></td>
+    密&nbsp;&nbsp;码:<input name="pwd" type="password" id="pwd" size="20"></td>
+    <input name="submit" type="submit" id="submit" value="登录"></td>
+</form>
+<!--在form表单元素外任意位置添加PHP标记符,使用if语句判断用户是否提交了表单,若条件成立,使用echo语句输出$_POST[]获取的用户名和密码,代码如下 ></!-->
+<?php
+    if($_POST["submit"] == "登录"){   //判断提交的按钮名称是否为"登录"
+        echo "输入的用户名为:".$_POST[user]."&nbsp;&nbsp;密码为:".$_POST[pwd];
+    }
+?>
+<!--应用文本框传值时,需要正确设置文本框的name属性,不应该有空格,获取文本框值时,
+    使用的文本框名称一定要与表单文本框中设置的name相同,否则将不能获取文本框的值 ></!-->
+
+
+<!--获取单选按钮的值 ></!-->
+<form name="form1" method="post" action="">
+    性别:
+    <input name="sex" type="radio" value="1" checked>男
+    <input name="sex" type="radio" value="0">女
+    <input name="submit" type="submit" id="Ssubmit" value="提交"></td>
+</form>
+<!--在form表单元素外任意位置添加PHP标记符,使用echo语句输出$_POST[]获取的单选按钮的值,代码如下 ></!-->
+<?php
+    echo "选择的性别为:".$_POST[sex];
+?>
+
+
+<!--获取复选框的值 ></!-->
+<form name="form1" method="post" action="">
+    <table width="445" cellspacing="0" cellpadding="0">
+        <tr>
+            <td width="443" height="41" align="center" valign="top">喜欢的类型
+                <input name="bookType[]" type="checkbox" value="萝莉">萝莉
+                <input name="bookType[]" type="checkbox" value="幼女">幼女
+                <input name="bookType[]" type="checkbox" value="御姐">御姐
+                <input name="bookType[]" type="checkbox" value="人妻">人妻
+                <input name="submit" type="submit" id="Sssubmit" value="提交">
+            </td>
+        </tr>
+    </table>
+</form>
+<!--在form表单元素外任意位置添加PHP标记符,使用echo语句输出$_POST[]获取的复选框的值,代码如下 ></!-->
+<?php
+    if($_POST["bookType"] != null){   //判断复选框不为空
+        echo "选择的结果为:";
+        for($i = 0;$i<count($_POST[bookType]);$i++){
+            echo $_POST[bookType][$i]."&nbsp;&nbsp;";
+        }
+    }
+?>
+
+
+<!--获取下拉列表框的值 ></!-->
+<form name="form1" method="post" action="">
+    <table width="280" cellspacing="0" cellpadding="0">
+        <tr>
+            <td width="80" height="20" align="center"><span class="style2">喜欢的类型</span></td>
+            <td width="194">
+                <select name="select" size="1">
+                    <option value="0" selected>网络编程</option>
+                    <option value="1">办公自动化</option>
+                    <option value="2">网页设计</option>
+                    <option value="3">网页美工</option>
+                </select>&nbsp;&nbsp;&nbsp;
+                <input name="submit" type="submit" id="Ssaubmit" value="提交">
+            </td>
+        </tr>
+    </table>
+</form>
+<!--<select>标记中设置size属性,size属性值为1,表示下拉列表框;若值大于1,表示为列表框,以值的大小确定显示列表中的元素个数,
+    若列表中的元素个数大于size属性设置值,则自动添加垂直滚动条;
+    在form表单元素外任意位置添加PHP标记符,使用echo语句输出$_POST[]获取的下拉列表框的值,代码如下 ></!-->
+<?php
+    if($_POST[select] != ""){   //判断多选列表框不为空
+        echo "选择的结果为:";
+        for($i = 0;$i<count($_POST[select]);$i++){
+            echo $_POST[select][$i]."&nbsp;&nbsp;";
+        }
+    }
+?>
+
+
+
+
+<!--获取菜单列表框的值 ></!-->
+<form name="form1" method="post" action="">
+    <table width="280" cellspacing="0" cellpadding="0">
+        <tr>
+            <td height="20" align="center" valign="middle"></td>
+        </tr>
+        <tr>
+            <td align="center" valign="middle">
+                <select name="selected[]" size="4" multiple>
+                    <option value="网络编程">网络编程</option>
+                    <option value="办公自动化">办公自动化</option>
+                    <option value="网页设计">网页设计</option>
+                    <option value="网页美工">网页美工</option>
+                </select>&nbsp;&nbsp;&nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td height="30" align="center" valign="middle">
+                <input name="submit" type="submit" id="saubmit" value="提交">
+            </td>
+        </tr>
+    </table>
+</form>
+<!--<select>标记中设置multiple属性,所以size与option个数相对应;
+    在form表单元素外任意位置添加PHP标记符,使用echo语句输出$_POST[]获取的菜单列表框的值,代码如下 ></!-->
+<?php
+    if($_POST[select] == "提交"){   //if语句判断是否提交
+        echo "选择的结果为:".$_POST[select];
+    }
+?>
+
+
+
+
+<!--获取文件域的值 ></!-->
+<form name="form1" method="post" action="">
+    <input name="file" type="file" size="15">
+    <input name="upload" type="submit" value="上传">
+</form>
+<!--创建一个表单,添加一个文件域和一个提交按钮,实现获取文件域的值,因为没有实现图片的上传,所以不需要设置表单元素enctype="multipart/form-data"属性></!-->
+<!--编写PHP代码,获取文件域的值并输出绝对路径 ></!-->
+<?php
+    echo $_POST[file];
+?>
+
+
+
+<!--对URL传递的参数进行编/解码 ></!-->
+<!--编码 ></!-->
+<a href="PHPWebBase.php?id=<?php echo urlencode(编程词典);?>">PHP编程词典
+</a>
+<!--解码 ></!-->
+<?php
+    echo "提交的查询字符串内容是:".urldecode($GET[id]);
+?>
+
+<!-- ></!-->
+
+<!-- ></!-->
+
+<!-- ></!-->
+
+<!-- ></!-->
+
+<!-- ></!-->
+
+<!-- ></!-->
+
+<!-- ></!-->
+
+<!-- ></!-->
+
+<!-- ></!-->
+
+<!-- ></!-->
+
+<!-- ></!-->
+
+<!-- ></!-->
+
+<!-- ></!-->
+
+<!-- ></!-->
+
+<!-- ></!-->
+
+<!-- ></!-->
+
+<!-- ></!-->
+
+<!-- ></!-->
+
+<!-- ></!-->
+
+<!-- ></!-->
+
+<!-- ></!-->
+
+<!-- ></!-->
+
+<!-- ></!-->
+
+<!-- ></!-->
+
+<!-- ></!-->
+
+<!-- ></!-->
+
+<!-- ></!-->
+
+
+</body>
+</html>
