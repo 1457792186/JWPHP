@@ -165,7 +165,7 @@ $lplot = new LinePlot($datay);                                       //创建折
 $lplot->mark->SetType(MARK_FILEDCIRCLE);                            //设置数据坐标点为圆形标记
 $lplot->mark->SetWidth(4);                                           //设置圆形标记直径为4像素
 $lplot->mark->SetFillColor('red');                                  //显示填充颜色
-$lplot->SetColor('blue'));                                          //设置折线颜色
+$lplot->SetColor('blue');                                          //设置折线颜色
 $lplot->SetCenter();                                                 //在x轴坐标点中心位置绘制折线
 $graph->Add($lplot);                                                //将折线图添加到图像
 $graph->Stroke();                                                   //输出图像
