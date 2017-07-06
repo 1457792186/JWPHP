@@ -14,6 +14,11 @@
 //Session适用于存储信息量比较少的情况,如果用户需要存储的信息量相对较少,并且存储内容无需长期存储,那么使用Session把信息存储到服务器比较合适
 
 
+
+
+
+
+
 //创建会话
 //创建会话分以下步骤:启动会话->注册会话->使用会话->删除会话
 
@@ -57,6 +62,11 @@ $_SESSION = array();
 //4.3结束当前会话
 //若整个会话已经结束,首先应该注销掉所有的会话变量,然后使用session_destroy()函数清除,并清空会话中所有资源没彻底销毁Session
 session_destroy();
+
+
+
+
+
 
 
 
@@ -107,6 +117,11 @@ $_SESSION['admin'] = 'mrsoft';
 
 
 
+
+
+
+
+
 //通过Session判断用户的操作权限
 
 //一.首先通过Session判断用户的操作权限
@@ -122,18 +137,18 @@ $_SESSION['admin'] = 'mrsoft';
 
 //PHP代码
 
-//首先使用session_start()初始化Session变量
+//1.首先使用session_start()初始化Session变量
 //然后通过POST方法接受表单元素的值,将获取的用户名和密码分别赋值给Session变量
 session_start();
 $_SESSION["user"]=$_POST["user"];
 $_SESSION["pwd"]=$_POST["pwd"];
 
-//为防止其他用户非法登录本系统,使用if语句对Session变量值进行判断
+//2.为防止其他用户非法登录本系统,使用if语句对Session变量值进行判断
 if ($_SESSION["user"]==""){     //若用户名为空,弹出提示,并跳转到登录页
     echo "<script language='javascript'>alert('请通过正确途径访问本系统');history.back();</script>";
 }
 
-//在数据处理页Session.php的导航栏处添加如下代码:     需要在<?php外进行添加,如最后处的附录1(与以下代码相同)
+//3.在数据处理页Session.php的导航栏处添加如下代码:     需要在<?php外进行添加,如最后处的附录1(与以下代码相同)
 /*
 <TABLE align="center" cellspacing="0" cellpadding="0">
     <TR align="center" valign="middle">
@@ -152,6 +167,7 @@ if ($_SESSION["user"]==""){     //若用户名为空,弹出提示,并跳转到�
         <TD width="70">|&nbsp;<a href="Session.php">我的相册</a></TD>
         <TD width="70">|&nbsp;<a href="Session.php">音乐在线</a></TD>
         <TD width="70">|&nbsp;<a href="Session.php">修改密码</a></TD>
+        <TD width="70">|&nbsp;<a href="safe.php">注销用户</a></TD>
         <?php
         if ($_SESSION["user"]=="tsoft"&&$_SESSION["pwd"]=="111") {//如果当前用户是管理员
         ?>
@@ -164,7 +180,7 @@ if ($_SESSION["user"]==""){     //若用户名为空,弹出提示,并跳转到�
 </TABLE>
 */
 
-//
+//4.添加"注销用户"超链接页safe.php,以下为该页代码
 /*
 <?php
 
@@ -185,12 +201,141 @@ header("location:index.php");//跳转到首页
 
 
 
+//Session高级应用
+
+//Session临时文件
+//在服务器中,如果将所有用户的Session都保存到临时目录中,会降低服务器的安全性和效率,打开服务器存储的站点会非常慢
+//在PHP中,使用session_save_path()函数可以解决这个问题
+$path = './tmp/';       //设置Session存储路径
+session_save_path($path);//存储Session临时文件
+session_start();        //初始化Session
+$_SESSION["username"] = true;
+
+
+//Session缓存
+//Session缓存是将网页中的内容临时存储到IE客户端Temporary Internet Files文件夹下,并且可以设置缓存时间
+//当第一次浏览网页后,页面的部分内容在规定的时间就被临时存储在客户端的临时文件夹中
+//这样在下次访问这个页面时,就可以直接读取缓存中的内容,从而提高网站的浏览效率
+
+//Session缓存使用的是session_cache_limiter()函数
+//语法:string session_cache_limiter([string cache_limiter])
+//参数cache_limiter为public或privite。同时Session缓存并不是指在服务器端而是在客户端缓存,在服务器中没有显示
+//缓存时间的设置,使用的是session_cache_expire()
+//语法:int session_cache_expire([int new_cache_expire])
+//参数cache_expire是Session缓存的时间,单位为分钟
+//注意这两个缓存函数需要在session_start();前调用
+
+//Session缓存实例
+session_cache_limiter('private');
+$cache_limit = session_cache_limiter(); //开启客户端缓存
+session_cache_expire(30);
+$cache_expire = session_cache_expire(); //设定客户端缓存时间
+session_start();
 
 
 
+//Session数据库存储
+//虽然更改存储文件夹不至于让临时文件夹填满而造成站点瘫痪,但是大量文件查询一个session_id不轻松
+//此时可以使用Session数据库存储,也就是PHP中的session_set_save_handler()函数
+//语法:bool session_set_save_handler(string open,string close,string read,string write,string destory,string gc)
+/*
+参数说明
+参数                              说明
+open(save_path,session_name)     找到Session存储地址,取出变量名称
+close()                          不需要参数,关闭数据库
+read(key)                        读取Session值,key对应session_id
+write(key,data)                  写入数据,data对应设置的Session变量
+destory(key)                     注销Session对应Session键值
+gc(expiry_time)                  清除过期Session记录
+*/
+//一般应用参数直接使用变量,但是此函数中的参数为6个函数,而且在调用时只调用函数名称字符串,以下为实例,最后把这些函数封装到类中
+
+//1.封装session_open函数,连接数据库
+function _session_open($save_path,$session_name){
+    global $handle;     //使用全局部变量,进行存储,之后的方法便于使用
+
+    $handle = mysqli_connect('localhost','root','root') or die('数据库连接失败');//连接数据库
+    //语法:mysqli_connect(host,username,password,dbname,port,socket);
+    /*
+    参数	        描述
+    host	    可选。 规定主机名或 IP 地址。
+    username	可选。 规定 MySQL 用户名。
+    password	可选。 规定 MySQL 密码。
+    dbname	    可选。 规定默认使用的数据库。
+    port	    可选。 规定尝试连接到 MySQL 服务器的端口号。
+    socket	    可选。 规定 socket 或要使用的已命名 pipe。
+    */
+    mysqli_select_db('db_database1',$handle) or die('数据库中没有此库名');//找到数据库
+    return true;
+}
+//$save_path,$session_name并未用到,可以去除,但是最好加上,以后功能可能会使用
+
+//2.封装session_close函数,关闭数据库连接
+function _session_close(){
+    global $handle;
+    mysqli_close($handle);//关闭数据库
+    return true;
+}
+//MySQL数据库使用完记得关闭
+
+//3.封装session_read函数,查找数据库
+function _session_read($key){
+    global $handle;             //使用全局部变量连接数据库
+    $time = time();             //设定当前时间
+    $sql = "select session_data from tb_session where session_key = '$key' and session_time > $time";//查询sql语句
+    $result = mysqli_query(sql,$handle);    //查询数据库
+    $row = mysqli_fetch_array($result);
+    if ($row){
+        return ($row['session_data']);
+    }else{
+        return false;
+    }
+}
+
+
+//4.封装session_write函数,写入数据库
+function _session_write($key,$data){
+    global $handle;             //使用全局部变量连接数据库
+    $time = 60*60;             //设定失效时间
+    $last_time = time() + $time;//失效时间
+    $sql = "select session_data from tb_session where session_key = '$key' and session_time > $last_time";//查询sql语句
+    $result = mysqli_query(sql,$handle);    //查询数据库
+
+    if (mysqli_num_rows($result)==0){//没有结果
+        $sql = "insert into tb_session values('$key','$data','$last_time')";//插入数据库SQL语句
+        $result = mysqli_query(sql,$handle);
+    }else{
+        $sql = "update tb_session set session_key = '$key',session_data = '$data',session_time=$last_time where session_key = '$key'";//更新数据库SQL语句
+        $result = mysqli_query(sql,$handle);
+    }
+
+    return ($result);
+}
+
+
+//5.封装session_destroy函数,删除数据库
+function _session_destroy($key){
+    global $handle;             //使用全局部变量连接数据库
+    $sql = "delete from tb_session where session_key = '$key'";//删除SQL语句
+    $result= mysqli_query($sql,$handle);
+    return ($result);
+}
+
+
+//6.封装session_gc函数,删除数据库过期Session
+function _session_gc($expiry_time){
+    global $handle;             //使用全局部变量连接数据库
+    $last_time = time();        //将$expiry_time赋值为当前时间戳
+    $sql = "delete from tb_session where expiry_time < $last_time";//删除SQL语句
+    $result= mysqli_query($sql,$handle);
+    return ($result);
+}
 
 
 
+//通过session_set_save_handler()实现Session存储数据库
+session_set_save_handler('_session_open','_session_close','_session_read','_session_write','_session_destory','_session_gc');
+session_start();
 
 
 ?>
@@ -214,6 +359,7 @@ header("location:index.php");//跳转到首页
         <TD width="70">|&nbsp;<a href="Session.php">我的相册</a></TD>
         <TD width="70">|&nbsp;<a href="Session.php">音乐在线</a></TD>
         <TD width="70">|&nbsp;<a href="Session.php">修改密码</a></TD>
+        <TD width="70">|&nbsp;<a href="safe.php">注销用户</a></TD>
         <?php
         if ($_SESSION["user"]=="tsoft"&&$_SESSION["pwd"]=="111") {//如果当前用户是管理员
         ?>

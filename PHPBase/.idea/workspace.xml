@@ -21,107 +21,52 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Cookie.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Main/Cookie.php">
+      <file leaf-file-name="PHPGD.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DetailLearn/Main/图形图像处理技术/PHPGD.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="975">
-              <caret line="65" column="82" selection-start-line="65" selection-start-column="82" selection-end-line="65" selection-end-column="82" />
+            <state relative-caret-position="283">
+              <caret line="174" column="0" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Cookie.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DetailLearn/Main/CookieSession/Cookie.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-180">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="Session.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Main/Session.php">
+        <entry file="file://$PROJECT_DIR$/DetailLearn/Main/CookieSession/Session.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="772">
-              <caret line="176" column="2" selection-start-line="176" selection-start-column="2" selection-end-line="176" selection-end-column="2" />
+            <state relative-caret-position="448">
+              <caret line="147" column="88" selection-start-line="147" selection-start-column="4" selection-end-line="147" selection-end-column="88" />
               <folding>
-                <element signature="n#style#0;n#TD#0;n#TR#0;n#TABLE#0;n#!!top" expanded="true" />
-                <element signature="e#5299#5305#0#HTML" expanded="true" />
-                <element signature="e#5657#5663#0#HTML" expanded="true" />
-                <element signature="e#5723#5729#0#HTML" expanded="true" />
-                <element signature="e#5789#5795#0#HTML" expanded="true" />
-                <element signature="e#5855#5861#0#HTML" expanded="true" />
-                <element signature="e#6092#6098#0#HTML" expanded="true" />
+                <marker date="1499246244000" expanded="true" signature="7807:7869" ph="select sessi... tb_session" />
+                <marker date="1499246244000" expanded="true" signature="7807:7873" ph="select sessi... tb_session" />
+                <marker date="1499246244000" expanded="true" signature="7807:7889" ph="select sessi... tb_session" />
+                <marker date="1499246244000" expanded="true" signature="7807:7890" ph="select sessi... tb_session" />
+                <marker date="1499246244000" expanded="true" signature="8298:8380" ph="select sessi... tb_session" />
+                <marker date="1499246244000" expanded="true" signature="8304:8379" ph="select sessi... tb_session" />
+                <marker date="1499246244000" expanded="true" signature="8304:8380" ph="select sessi... tb_session" />
+                <marker date="1499246244000" expanded="true" signature="8515:8573" ph="insert into tb_session... " />
+                <marker date="1499246244000" expanded="true" signature="8527:8538" ph="select sessi... tb_session" />
+                <marker date="1499246244000" expanded="true" signature="8660:8702" ph="update tb_se... " />
+                <marker date="1499246244000" expanded="true" signature="8660:8725" ph="update tb_se... " />
+                <marker date="1499246244000" expanded="true" signature="8660:8739" ph="update tb_se... " />
+                <marker date="1499246244000" expanded="true" signature="8660:8776" ph="update tb_se... " />
+                <marker date="1499246244000" expanded="true" signature="8666:8677" ph="insert into tb_session... " />
+                <marker date="1499246244000" expanded="true" signature="8991:9040" ph="delete from " />
+                <marker date="1499246244000" expanded="true" signature="8997:9040" ph="select sessi... tb_session" />
+                <marker date="1499246244000" expanded="true" signature="9304:9344" ph="delete from " />
+                <marker date="1499246244000" expanded="true" signature="9304:9347" ph="delete from " />
+                <marker date="1499246244000" expanded="true" signature="9304:9348" ph="delete from " />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PHPCookies.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AdvancedLearning/MoreLearn/PHPCookies.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PHPSessions.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AdvancedLearning/MoreLearn/PHPSessions.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="safe.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Main/safe.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="2" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SessionHtml.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Main/SessionHtml.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="61" />
-              <folding>
-                <element signature="e#1355#1361#0" expanded="true" />
-                <element signature="e#1361#1367#0" expanded="true" />
-                <element signature="e#1987#1993#0" expanded="true" />
-                <element signature="e#1993#1999#0" expanded="true" />
-                <element signature="e#1999#2005#0" expanded="true" />
-                <element signature="e#2005#2011#0" expanded="true" />
-                <element signature="e#2016#2022#0" expanded="true" />
-                <element signature="e#2022#2028#0" expanded="true" />
-                <element signature="e#2158#2164#0" expanded="true" />
-                <element signature="e#2164#2170#0" expanded="true" />
-                <element signature="e#2170#2176#0" expanded="true" />
-                <element signature="e#2176#2182#0" expanded="true" />
-                <element signature="e#2187#2193#0" expanded="true" />
-                <element signature="e#2193#2199#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PHPWebBaseJS.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PHPWebBaseJS.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="751">
-              <caret line="188" column="0" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PHPWebBaseH.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PHPWebBaseH.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="117">
-              <caret line="285" column="0" selection-start-line="285" selection-start-column="0" selection-end-line="285" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -139,8 +84,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Define/PHPDefine.php" />
-        <option value="$PROJECT_DIR$/String/PHPString.php" />
         <option value="$PROJECT_DIR$/Count/PHPOperator.php" />
         <option value="$PROJECT_DIR$/Funcation/PHPIfElse.php" />
         <option value="$PROJECT_DIR$/Funcation/PHPFuncation.php" />
@@ -190,6 +133,8 @@
         <option value="$PROJECT_DIR$/Main/SessionHtml.html" />
         <option value="$PROJECT_DIR$/Main/safe.php" />
         <option value="$PROJECT_DIR$/Main/Session.php" />
+        <option value="$PROJECT_DIR$/DetailLearn/Main/CookieSession/Session.php" />
+        <option value="$PROJECT_DIR$/DetailLearn/Main/图形图像处理技术/PHPGD.php" />
       </list>
     </option>
   </component>
@@ -204,10 +149,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="202" />
-    <option name="y" value="230" />
-    <option name="width" value="1350" />
-    <option name="height" value="998" />
+    <option name="x" value="83" />
+    <option name="y" value="254" />
+    <option name="width" value="1488" />
+    <option name="height" value="989" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -252,10 +197,64 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PHPBase" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PHPBase" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DetailLearn" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PHPBase" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PHPBase" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DetailLearn" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Main" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PHPBase" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PHPBase" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DetailLearn" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Main" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="图形图像处理技术" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -350,20 +349,22 @@
       <workItem from="1499138339593" duration="1709000" />
       <workItem from="1499140057086" duration="20136000" />
       <workItem from="1499232447036" duration="7714000" />
+      <workItem from="1499241094071" duration="12478000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="108168000" />
+    <option name="totallyTimeSpent" value="120646000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="202" y="230" width="1350" height="998" extended-state="0" />
-    <editor active="false" />
+    <frame x="83" y="254" width="1488" height="989" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2748148" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24932796" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32938644" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -374,7 +375,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
     </layout>
@@ -388,10 +388,10 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24075276" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24932796" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32938644" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
@@ -411,102 +411,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Funcation/PHPFuncationCustom.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="46" column="24" selection-start-line="46" selection-start-column="24" selection-end-line="46" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Form/PHPFormBase03.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="34" column="28" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AdvancedLearning/SQL/PHPSQLODBC.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="32" column="26" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AdvancedLearning/SQL/PHPSQLOrderBy.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-150">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AdvancedLearning/MoreLearn/PHPAray.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AdvancedLearning/MoreLearn/PHPEmailSafe.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-105">
-          <caret line="42" column="1" selection-start-line="42" selection-start-column="1" selection-end-line="42" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AdvancedLearning/MoreLearn/PHPError.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2175">
-          <caret line="145" column="46" selection-start-line="145" selection-start-column="46" selection-end-line="145" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AdvancedLearning/SQL/PHPSQLSelect.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="40" column="13" selection-start-line="40" selection-start-column="6" selection-end-line="40" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AdvancedLearning/SQL/PHPSQLBase.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="35" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AdvancedLearning/MoreLearn/PHPEmail.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AdvancedLearning/SQL/PHPSQLUpdate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="38" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AdvancedLearning/SQL/PHPSQLConnect.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AdvancedLearning/SQL/PHPSQLCreate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/AdvancedLearning/SQL/PHPSQLDelete.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="585">
@@ -563,13 +472,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Funcation/PHPFuncation.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="852">
-          <caret line="67" column="24" selection-start-line="67" selection-start-column="24" selection-end-line="67" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/AdvancedLearning/MoreLearn/PHPFileBase.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
@@ -612,20 +514,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/String/PHPString.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GLOBALS/PHPGlobals.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Define/PHPDefine.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -643,41 +531,9 @@
     <entry file="file://$PROJECT_DIR$/PHP.js" />
     <entry file="file://$PROJECT_DIR$/PHPWebbaseJS.html" />
     <entry file="file://$PROJECT_DIR$/aa.js" />
-    <entry file="file://$PROJECT_DIR$/PHPWebBase.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PHPWebWithJS.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
-          <caret line="217" column="12" selection-start-line="217" selection-start-column="12" selection-end-line="217" selection-end-column="12" />
-          <folding>
-            <element signature="e#5417#5423#0" expanded="false" />
-            <element signature="e#5605#5611#0" expanded="false" />
-            <element signature="e#5611#5617#0" expanded="false" />
-            <element signature="e#5852#5858#0" expanded="false" />
-            <element signature="e#6286#6292#0" expanded="false" />
-            <element signature="e#6292#6298#0" expanded="false" />
-            <element signature="e#6942#6948#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PHPBase.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding>
-            <element signature="e#7#13#0#PHP" expanded="false" />
-            <marker date="1499158190000" expanded="true" signature="2220:2271" ph="select * fro... tb_book" />
-            <marker date="1499158190000" expanded="true" signature="2641:2692" ph="select * fro... tb_book" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/PHPWebBase.php" />
+    <entry file="file://$PROJECT_DIR$/PHPWebWithJS.html" />
+    <entry file="file://$PROJECT_DIR$/PHPBase.php" />
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/date_d.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -707,14 +563,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Main/Cookie.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="975">
-          <caret line="65" column="82" selection-start-line="65" selection-start-column="82" selection-end-line="65" selection-end-column="82" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Main/Cookie.php" />
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/session.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -723,63 +572,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PHPWebBaseH.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="285" column="0" selection-start-line="285" selection-start-column="0" selection-end-line="285" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PHPWebBaseJS.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="751">
-          <caret line="188" column="0" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Main/SessionHtml.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="61" />
-          <folding>
-            <element signature="e#1355#1361#0" expanded="true" />
-            <element signature="e#1361#1367#0" expanded="true" />
-            <element signature="e#1987#1993#0" expanded="true" />
-            <element signature="e#1993#1999#0" expanded="true" />
-            <element signature="e#1999#2005#0" expanded="true" />
-            <element signature="e#2005#2011#0" expanded="true" />
-            <element signature="e#2016#2022#0" expanded="true" />
-            <element signature="e#2022#2028#0" expanded="true" />
-            <element signature="e#2158#2164#0" expanded="true" />
-            <element signature="e#2164#2170#0" expanded="true" />
-            <element signature="e#2170#2176#0" expanded="true" />
-            <element signature="e#2176#2182#0" expanded="true" />
-            <element signature="e#2187#2193#0" expanded="true" />
-            <element signature="e#2193#2199#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Main/Session.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="772">
-          <caret line="176" column="2" selection-start-line="176" selection-start-column="2" selection-end-line="176" selection-end-column="2" />
-          <folding>
-            <element signature="n#style#0;n#TD#0;n#TR#0;n#TABLE#0;n#!!top" expanded="true" />
-            <element signature="e#5299#5305#0#HTML" expanded="true" />
-            <element signature="e#5657#5663#0#HTML" expanded="true" />
-            <element signature="e#5723#5729#0#HTML" expanded="true" />
-            <element signature="e#5789#5795#0#HTML" expanded="true" />
-            <element signature="e#5855#5861#0#HTML" expanded="true" />
-            <element signature="e#6092#6098#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/PHPWebBaseH.html" />
+    <entry file="file://$PROJECT_DIR$/PHPWebBaseJS.js" />
+    <entry file="file://$PROJECT_DIR$/Main/SessionHtml.html" />
+    <entry file="file://$PROJECT_DIR$/Main/Session.php" />
     <entry file="file://$PROJECT_DIR$/AdvancedLearning/MoreLearn/PHPCookies.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="495">
@@ -796,10 +592,156 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Main/safe.php">
+    <entry file="file://$PROJECT_DIR$/Main/safe.php" />
+    <entry file="file://$PROJECT_DIR$/DetailLearn/Main/CookieSession/SessionHtml.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="2" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
+        <state relative-caret-position="-225">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/mysqli.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="1577" column="9" selection-start-line="1577" selection-start-column="9" selection-end-line="1577" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/mysql.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="54" column="114" selection-start-line="54" selection-start-column="114" selection-end-line="54" selection-end-column="114" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DetailLearn/PHPWebWithJS.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1155">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DetailLearn/PHPWebBaseJS.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2039">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DetailLearn/PHPWebBaseH.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2385">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DetailLearn/PHPWebBase.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DetailLearn/PHPBase.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="950" column="4" selection-start-line="950" selection-start-column="2" selection-end-line="950" selection-end-column="4" />
+          <folding>
+            <marker date="1499158190000" expanded="true" signature="2220:2271" ph="select * fro... tb_book" />
+            <marker date="1499158190000" expanded="true" signature="2641:2692" ph="select * fro... tb_book" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/String/PHPString.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GLOBALS/PHPGlobals.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-150">
+          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Funcation/PHPFuncationCustom.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Funcation/PHPFuncation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="637">
+          <caret line="67" column="24" selection-start-line="67" selection-start-column="24" selection-end-line="67" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/standard_3.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="664" column="28" selection-start-line="664" selection-start-column="28" selection-end-line="664" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DetailLearn/Main/CookieSession/Cookie.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-180">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DetailLearn/Main/CookieSession/Session.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="147" column="88" selection-start-line="147" selection-start-column="4" selection-end-line="147" selection-end-column="88" />
+          <folding>
+            <marker date="1499246244000" expanded="true" signature="7807:7869" ph="select sessi... tb_session" />
+            <marker date="1499246244000" expanded="true" signature="7807:7873" ph="select sessi... tb_session" />
+            <marker date="1499246244000" expanded="true" signature="7807:7889" ph="select sessi... tb_session" />
+            <marker date="1499246244000" expanded="true" signature="7807:7890" ph="select sessi... tb_session" />
+            <marker date="1499246244000" expanded="true" signature="8298:8380" ph="select sessi... tb_session" />
+            <marker date="1499246244000" expanded="true" signature="8304:8379" ph="select sessi... tb_session" />
+            <marker date="1499246244000" expanded="true" signature="8304:8380" ph="select sessi... tb_session" />
+            <marker date="1499246244000" expanded="true" signature="8515:8573" ph="insert into tb_session... " />
+            <marker date="1499246244000" expanded="true" signature="8527:8538" ph="select sessi... tb_session" />
+            <marker date="1499246244000" expanded="true" signature="8660:8702" ph="update tb_se... " />
+            <marker date="1499246244000" expanded="true" signature="8660:8725" ph="update tb_se... " />
+            <marker date="1499246244000" expanded="true" signature="8660:8739" ph="update tb_se... " />
+            <marker date="1499246244000" expanded="true" signature="8660:8776" ph="update tb_se... " />
+            <marker date="1499246244000" expanded="true" signature="8666:8677" ph="insert into tb_session... " />
+            <marker date="1499246244000" expanded="true" signature="8991:9040" ph="delete from " />
+            <marker date="1499246244000" expanded="true" signature="8997:9040" ph="select sessi... tb_session" />
+            <marker date="1499246244000" expanded="true" signature="9304:9344" ph="delete from " />
+            <marker date="1499246244000" expanded="true" signature="9304:9347" ph="delete from " />
+            <marker date="1499246244000" expanded="true" signature="9304:9348" ph="delete from " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DetailLearn/Main/图形图像处理技术/PHPGD.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="174" column="0" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
           <folding />
         </state>
       </provider>
