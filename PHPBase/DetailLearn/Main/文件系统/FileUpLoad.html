@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FileUpLoad</title>
+</head>
+<body>
+
+
+
+<!--文件上传 ></!-->
+
+<!--上传文件的form表单,必须有enctype属性 ></!-->
+<form action="FileSystom.php" method="post" enctype="multipart/form-data">
+    <table width="500" border="0" cellpadding="0" cellspacing="0">
+
+        <tr>
+            <td width="150" height="30" align="right" valign="middle">请选择上传文件</td>
+            <!--上传文件域,type类型为file ></!-->
+            <td width="250">
+                <input type="file" name="upfile">
+            </td>
+            <!--提交按钮 ></!-->
+            <td width="100">
+                <input type="submit" name="submit" value="上传">
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+
+
+
+
+
+
+
+<!--多文件上传 ></!-->
+请选择要上传的文件
+<!--上传文件表单 ></!-->
+<form  action="FileSystom.php" method="post" enctype="multipart/form-data">
+    <table id="up_table" border="1" bgcolor="f0f0f0">
+        <tbody id="auto">
+            <tr id="show">
+                <td>上传文件</td>
+                <td>
+                    <input name="u_file[]" type="file">
+                </td>
+            </tr>
+            <tr>
+                <td>上传文件</td>
+                <td>
+                    <input name="u_file[]" type="file">
+                </td>
+            </tr>
+        </tbody>
+        <tr>
+            <td colspan="4">
+                <input type="submit" value="上传">
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+
+
+
+</body>
+
+</html>

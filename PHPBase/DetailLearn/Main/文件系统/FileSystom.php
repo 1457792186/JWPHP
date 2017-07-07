@@ -208,18 +208,257 @@ array stat(filename)                返回一个数组,包括文件的相关信�
 
 
 //——————————————————————————————————-——目录处理
+//打开/关闭目录
+//打开/关闭目录和打开/关闭文件类似,但打开的文件若不存在,就会自动创建一个新文件,而打开的目录不正确,则一定会报错
+
+//1.1打开目录
+//使用opendir()函数
+//语法resource opendir(path)
+//参数path是一个合法的目录路径,成功执行后返回指向该目录的指针:
+//        如果path不合法或者因为权限或文件系统错误而不能打开目录,则返回false并产生一个E_WARNING级的错误信息
+//        可在opendir()前加上"@"符号来屏蔽错误信息的输出
+
+//1.2.关闭目录
+//使用closedir()函数
+//语法void closedir(reasource handle)
+//参数handle是使用opendir()函数打开的一个目录指针
+
+//打开和关闭目录的实例
+$path = 'D:\\AppServ\\www\\tm\\sl\\12';
+$dire = '';
+if (is_dir($path)){                     //检测是否是一个目录
+    if ($dire = opendir($path)){        //判断是否打开成功
+        echo $dire;                     //输出目录指针
+    }
+}else{
+    echo '路径错误';
+    exit();
+}
+
+if ($dire !=''){
+    closedir($dire);                        //关闭目录
+}
+//is_dir()函数判断当前路劲是否为一个合法的路劲,若合法,返回true,否则返回false
+
+
+
+
+
+//2.浏览目录
+//使用scandir()函数极限浏览目录中的文件
+//语法array  scandir(string directory[,int sorting_order])
+//该函数返回一个数组,包含directory中所有文件和目录。
+//参数sorting_order指定排序顺序,默认按字母升序排序;若添加了sorting_order则变为降序排序
+
+//实例:查看F:\AppServ\www\tm\sl\12下的所有文件
+$path = 'F:\\AppServ\\www\\tm\\sl\\12';
+$dire = '';
+if (is_dir($path)){                     //检测是否是一个目录
+    $dire = scandir($path);             //使用scandir()函数取得所有文件及目录
+    foreach ($dire as $value){          //循环输出文件及目录名称
+        echo $value."\n";
+    }
+}else{
+    echo '路径错误';
+    exit();
+}
+
+
+
+
+//3.操作目录
+//目录是一种特殊文件,对文件的操作多数适用于目录。但是有一些函数专门针对目录
+/*
+常用目录操作系统
+函数原型                                        函数说明                            实例
+bool mkdir(string dirname)                     新建一个指定的目录                    mkdir('temp');
+
+bool rmdir(string dirname)                     删除指定的目录,该目录需要是空的         rmdir('temp');
+
+string getcwd(void)                            取得当前的工作目录                    getcwd();
+
+bool chdir(string directory)                   改变当前目录为directory              echo getcwd()."\n";
+                                                                                  chdir('../');
+                                                                                  echo getcwd()."\n";
+
+float disk_free_space(string directory)        返回目录中的可用空间(bytes)           diskfreespace('d:\\appserv');
+                                               被检查的文件必须通过服务器的文件系统访问
+
+float disk_total_space(string directory)       返回目录的总空间大小                  disk_total_space('d:\\appserv');
+
+string readdir(resource handle)                返回目录下一个文件的文件名             while (false != ($path=readdir($handle))){
+                                               (使用此函数时,目录必须是                   echo $path;
+                                               使用opendir()打开的)                 }
+
+void rewinddir(resource handle)                将指定的目录重新指定到目录的开头        rewinddir($handle);
+
+*/
 
 
 
 
 
 
+//4.文件处理的高级应用
+//4.1远程文件的访问
+//PHP支持URL格式的文件调用,只要在php.ini中设置一下即可。php.ini中找到allow_url_fopen,将该选项设为NO。重启服务器后即可使用HTTP或FTP的URL格式
+//实例
+fopen('http://127.0.0.1/tm/sl/index.php','rb');
+
+
+//4.2文件指针
+//PHP可以实现文件指针的定位和查询,从而实现所需信息的快速查询。文件指针函数有rewind()、fseek()、feof()和ftell()
+
+//4.2.1rewind()函数
+//该函数将文件handle的指针设为文件流的开头
+//语法bool rewind(resource handle)
+//如果将文件以追加("a")模式打开,写入文件的任何数据总是会被附加在文件已有内容的末尾,不论文件指针的位置在何处
+
+//4.2.2fseek()函数
+//实现文件指针的定位
+//语法int fseek(resource handle,int offset[,int whence])
+//参数handle为要打开的文件
+//offset为指针位置或相对whence参数的偏移量,可以是负值
+//whence的值包括以下3种:
+//      SEEK_SET,位置等于offset字节
+//      SEEK_CUR,位置等于当前位置加上offset字节
+//      SEEK_END,位置等于文件尾加上offset字节
+//如果忽略whence参数,系统默认为SEEK_SET
+
+//4.2.3feof()函数
+//该函数判断文件指针是否在文件尾
+//语法bool feof(resource handle)
+//如果文件指针到了文件结束的位置,就返回true,否则返回false
+
+//4.2.4ftell()函数
+//返回当前指针的位置
+//语法int ftell(resource handle)
+
+//实例:使用上述4个指针函数输出07.txt的内容
+$filename = '07.txt';
+if (is_file($filename)){                                //判断文件是否存在
+    echo '文件总字节数'.filesize($filename)."\n";         //输出总字节数
+    $fopen = fopen($filename,'rb');                     //打开文件
+    echo '初始指针位置是'.ftell($fopen)."\n";             //输出指针位置
+    fseek($fopen,33);                                   //移动指针
+    echo '指针位移后的位置'.ftell($fopen)."\n";            //输出指针移动后位置
+    echo '输出当前指针后面的内容'.fgetc($fopen)."\n";      //输出指针后面的内容
+    if (feof($fopen)){                                  //判断指针是否指向文件末尾
+        echo '当前指针指向文件末尾'.ftell($fopen)."\n";    //若指向了文件末尾,输出指针位置
+    }
+    rewind($fopen);                                     //重置指针位置到开头
+    echo '重置到开头'.ftell($fopen)."\n";                //输出重置开头后指针位置
+    echo '输出前33个字节的内容'.fgets($fopen,33);         //输出33个字节的内容
+    fclose($fopen);
+}else{
+    echo '文件不存在';
+}
+
+
+
+
+
+//5.锁定文件
+//在向一个文本文件写入内容时,需要先锁定该文件,以防止其他用户同时修改此文件内容
+//PHP中锁定文件的函数是flock()
+//语法bool flock(resource handle,int operation)
+//参数handle为一个已经打开的文件指针,operation的参数如下表
+/*
+operation的参数值
+参数值               说明
+LOCK_SH             取得各项锁定(读取文件)
+LOCK_EX             取得独占锁定(写入文件)
+LOCK_UN             释放锁定
+LOCK_NB             防止flock()在锁定时堵塞
+*/
+//实例:使用flock()锁定文件,之后再写入数据,最后解除锁定,关闭文件
+$filename = '08.txt';
+$fd = fopen($filename,'w');         //以w模式打开文件
+flock($fd,LOCK_EX);                 //锁定文件,独占共享
+fwrite($fd,'hightman');             //向文件中写入数据
+flock($fd,LOCK_UN);                 //解除锁定
+fclose($fd);                        //关闭文件指针
+readfile($filename);                //输出文件内容
 
 
 
 
 
 
+//——————————————————————————————文件上传——————————————————————————————
+//文件上传可以通过HTTP协议来实现。要使用文件上传功能,首先要在php.ini配置文件中对上传做一些设置
+//       然后了解预定义变量$_FILES,通过$_FILES的值对上传文件做一些限制和判断,最后用move_uploaded_file()函数上传文件
+
+//1.配置php.ini文件
+//要使用文件上传功能,首先要在php.ini配置文件中对上传做一些设置。找到File Uploads项,可以看到下面3个属性,含义如下
+//file_uploads:如果值为on,说明服务器支持文件上传,如果为off则不支持
+//upload_tmp_dir:上传文件临时目录。在文件被成功上传之前,文件首先存放到服务器的临时目录中。如果想要指定位置,可在这里设置,否则使用系统默认目录
+//upload_max_filesize:服务器允许上传的文件的最大值,以MB为单位。系统默认为2MB,用户可以自行设置
+//除了File Uploads项还有几个属性也会影响到上传文件的功能
+//max_execution_time:PHP中一个指令所能执行的最长时间,单位是秒
+//menory_limit:PHP中一个指令所分配的内存空间。单位是MB
+
+//如果要上传超大的文件,需要对php.ini的一些参数进行修改。
+//其中包括upload_max_filesize:服务器允许上传的文件的最大值,max_execution_time:PHP中一个指令所能执行的最长时间和menory_limit:PHP中一个指令所分配的内存空间
+
+
+
+//2.预定义变量$_FILES
+//$_FILES变量存储的是上传文件的相关信息,这些信息对于上传功能有很大作用。该变量的一个二维数组。预定义变量$_FILES说明如下表
+/*
+预定义变量$_FILES说明
+元素名                             说明
+$_FILES[filename][name]           存储了上传文件的文件名
+$_FILES[filename][size]           存储了文件大小,单位为字节
+$_FILES[filename][tmp_name]       文件上传时,首先在临时目录中被保存成一个临时文件。该变量为临时文件名
+$_FILES[filename][type]           上传文件的类型
+$_FILES[filename][error]          存储了上传文件的结果。如果值为0,说明文件上传成功
+*/
+//实例:创建一个上传文件域,通过$_FILES变量输出上传文件的文件资料
+//HTML代码见FileUpLoad.html文件
+if (!empty($_FILES)){                                       //判断$_FILES是否为空
+    foreach ($_FILES['upfile'] as $name => $value){         //使用循环,输出上传文件的名称和值
+        echo $name.'='.$value."\n";
+    }
+}
+
+
+
+//3.文件上传函数
+//PHP中使用move_uploaded_file()函数上传文件
+//语法bool move_uploaded_file(filename,destination)
+//move_uploaded_file()函数将上传文件存储到指定位置。如果成功,则返回true,否则返回false
+//参数filename是上传文件的临时文件名,即$_FILES[tmp_name]:参数destination是上传后保存的新的路径和名称
+//实例:创建一个上传文件域,允许上传大小为1MB以下的文件
+//HTML代码见FileUpLoad.html文件
+if (!empty($_FILES['upfile']['name'])){             //判断是否有上传文件
+    $fileInfo = $_FILES['up_file'];                 //将文件信息赋值给fileInfo
+    if ($fileInfo['size'] < 1000000 && $fileInfo['size']>0){    //判断文件大小
+        move_uploaded_file($fileInfo['tmp_name'],$fileInfo['name']);    //上传文件
+        echo '上传成功';
+    }else{
+        echo '文件太大或未知';
+    }
+}
+//使用move_uploaded_file()上传文件时,在创建form表单时,必须设置form表单的enctype="multipart/form-data"
+
+
+
+
+//4.多文件上传
+//PHP支持同时上传多个文件,只需要在表单中对文件上传域使用数组命名即可
+//实例:创建4个上传文件域,文件域的名字为u_file[],提交后上传的文件信息都被保存到$_FILES[u_file]中,生成多维数组。读取数组信息,并上传文件
+//HTML代码见FileUpLoad.html文件---多文件上传
+if (!empty($_FILES['u_file']['name'])){                     //判断是否有上传文件
+    $filename = $_FILES['u_file']['name'];                 //将上传的文件名另存为数组
+    $file_tmp_name = $_FILES['u_file']['tmp_name'];         //将上传的临时文件名另存为数组
+    for ($i=0;$i<count($filename);$i++){                             //循环上传文件
+        if ($filename[$i] != ''){                                    //判断上传文件名是否为空
+            move_uploaded_file($file_tmp_name[$i],$filename[$i]);    //上传文件
+            echo '文件'.$filename[$i].'上传成功。更名为'.$i.$filename[$i]."\n";
+        }
+    }
+}
 
 
 
