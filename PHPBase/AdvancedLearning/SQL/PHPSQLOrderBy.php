@@ -15,17 +15,17 @@ ORDER BY column_name
 
 //*************************************例子
 //下面的例子选取 "Persons" 表中的存储的所有数据，并根据 "Age" 列对结果进行排序
-$con = mysql_connect("localhost","peter","abc123");
+$con = mysqli_connect("localhost","peter","abc123");
 if (!$con)
 {
-    die('Could not connect: ' . mysql_error());
+    die('Could not connect: ' . mysqli_error());
 }
 
-mysql_select_db("my_db", $con);
+mysqli_select_db("my_db", $con);
 
-$result = mysql_query("SELECT * FROM Persons ORDER BY age");
+$result = mysqli_query("SELECT * FROM Persons ORDER BY age");
 
-while($row = mysql_fetch_array($result))
+while($row = mysqli_fetch_array($result))
 {
     echo $row['FirstName'];
     echo " " . $row['LastName'];
@@ -33,7 +33,7 @@ while($row = mysql_fetch_array($result))
     echo "<br />";
 }
 
-mysql_close($con);
+mysqli_close($con);
 /*
 以上代码的输出：
 Glenn Quagmire 33

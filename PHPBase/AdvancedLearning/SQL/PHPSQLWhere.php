@@ -24,23 +24,23 @@ LIKE	    搜索匹配的模式
 */
 
 //注释：SQL 语句对大小写不敏感。WHERE 与 where 等效。
-//为了让 PHP 执行上面的语句，必须使用 mysql_query() 函数。该函数用于向 SQL 连接发送查询和命令
+//为了让 PHP 执行上面的语句，必须使用 mysqli_query() 函数。该函数用于向 SQL 连接发送查询和命令
 
 
 //*************************************例子
 //下面的例子将从 "Persons" 表中选取所有 FirstName='Peter' 的行
-$con = mysql_connect("localhost","peter","abc123");
+$con = mysqli_connect("localhost","peter","abc123");
 if (!$con)
 {
-    die('Could not connect: ' . mysql_error());
+    die('Could not connect: ' . mysqli_error());
 }
 
-mysql_select_db("my_db", $con);
+mysqli_select_db("my_db", $con);
 
-$result = mysql_query("SELECT * FROM Persons
+$result = mysqli_query("SELECT * FROM Persons
 WHERE FirstName='Peter'");
 
-while($row = mysql_fetch_array($result))
+while($row = mysqli_fetch_array($result))
 {
     echo $row['FirstName'] . " " . $row['LastName'];
     echo "<br />";

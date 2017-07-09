@@ -9,31 +9,31 @@
 //语法
 SELECT column_name(s) FROM table_name
 //注释：SQL 语句对大小写不敏感。SELECT 与 select 等效。
-//为了让 PHP 执行上面的语句，必须使用 mysql_query() 函数。该函数用于向 MySQL 发送查询或命令
+//为了让 PHP 执行上面的语句，必须使用 mysqli_query() 函数。该函数用于向 MySQL 发送查询或命令
 
 
 //*************************************例子
 //下面的例子选取存储在 "Persons" 表中的所有数据（* 字符选取表中所有数据）
-$con = mysql_connect("localhost","peter","abc123");
+$con = mysqli_connect("localhost","peter","abc123");
 if (!$con)
 {
-    die('Could not connect: ' . mysql_error());
+    die('Could not connect: ' . mysqli_error());
 }
 
-mysql_select_db("my_db", $con);
+mysqli_select_db("my_db", $con);
 
-$result = mysql_query("SELECT * FROM Persons");
+$result = mysqli_query("SELECT * FROM Persons");
 
-while($row = mysql_fetch_array($result))
+while($row = mysqli_fetch_array($result))
 {
     echo $row['FirstName'] . " " . $row['LastName'];
     echo "<br />";
 }
 
-mysql_close($con);
-//上面这个例子在 $result 变量中存放由 mysql_query() 函数返回的数据。
-//接下来，使用 mysql_fetch_array() 函数以数组的形式从记录集返回第一行。
-//每个随后对 mysql_fetch_array() 函数的调用都会返回记录集中的下一行。
+mysqli_close($con);
+//上面这个例子在 $result 变量中存放由 mysqli_query() 函数返回的数据。
+//接下来，使用 mysqli_fetch_array() 函数以数组的形式从记录集返回第一行。
+//每个随后对 mysqli_fetch_array() 函数的调用都会返回记录集中的下一行。
 // while loop 语句会循环记录集中的所有记录。
 //为了输出每行的值，使用了 PHP 的 $row 变量 ($row['FirstName'] 和 $row['LastName'])
 /*
@@ -45,15 +45,15 @@ Glenn Quagmire
 
 //在 HTML 表格中显示结果
 //下面的例子选取的数据与上面的例子相同，但是将把数据显示在一个 HTML 表格中
-$con = mysql_connect("localhost","peter","abc123");
+$con = mysqli_connect("localhost","peter","abc123");
 if (!$con)
 {
-    die('Could not connect: ' . mysql_error());
+    die('Could not connect: ' . mysqli_error());
 }
 
-mysql_select_db("my_db", $con);
+mysqli_select_db("my_db", $con);
 
-$result = mysql_query("SELECT * FROM Persons");
+$result = mysqli_query("SELECT * FROM Persons");
 
 echo "<table border='1'>
 <tr>
@@ -61,7 +61,7 @@ echo "<table border='1'>
 <th>Lastname</th>
 </tr>";
 
-while($row = mysql_fetch_array($result))
+while($row = mysqli_fetch_array($result))
 {
     echo "<tr>";
     echo "<td>" . $row['FirstName'] . "</td>";
@@ -70,7 +70,7 @@ while($row = mysql_fetch_array($result))
 }
 echo "</table>";
 
-mysql_close($con);
+mysqli_close($con);
 /*
 以上代码的输出：
 Firstname	Lastname

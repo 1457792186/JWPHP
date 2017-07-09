@@ -8,27 +8,27 @@
 
 //语法
 CREATE DATABASE database_name
-//为了让 PHP 执行上面的语句，必须使用 mysql_query() 函数。此函数用于向 MySQL 连接发送查询或命令
+//为了让 PHP 执行上面的语句，必须使用 mysqli_query() 函数。此函数用于向 MySQL 连接发送查询或命令
 
 
 //*************************************例子
 //在下面的例子中，创建了一个名为 "my_db" 的数据库
-$con = mysql_connect("localhost","peter","abc123");
+$con = mysqli_connect("localhost","peter","abc123");
 if (!$con)
 {
-    die('Could not connect: ' . mysql_error());
+    die('Could not connect: ' . mysqli_error());
 }
 
-if (mysql_query("CREATE DATABASE my_db",$con))
+if (mysqli_query("CREATE DATABASE my_db",$con))
 {
     echo "Database created";
 }
 else
 {
-    echo "Error creating database: " . mysql_error();
+    echo "Error creating database: " . mysqli_error();
 }
 
-mysql_close($con);
+mysqli_close($con);
 
 
 
@@ -42,40 +42,40 @@ column_name2 data_type,
 column_name3 data_type,
 .......
 )
-//为了执行此命令，必须向 mysql_query() 函数添加 CREATE TABLE 语句
+//为了执行此命令，必须向 mysqli_query() 函数添加 CREATE TABLE 语句
 
 
 //*************************************例子
 //下面的例子展示了如何创建一个名为 "Persons" 的表，此表有三列。列名是 "FirstName", "LastName" 以及 "Age"
-$con = mysql_connect("localhost","peter","abc123");
+$con = mysqli_connect("localhost","peter","abc123");
 if (!$con)
 {
-    die('Could not connect: ' . mysql_error());
+    die('Could not connect: ' . mysqli_error());
 }
 
 // Create database
-if (mysql_query("CREATE DATABASE my_db",$con))
+if (mysqli_query("CREATE DATABASE my_db",$con))
 {
     echo "Database created";
 }
 else
 {
-    echo "Error creating database: " . mysql_error();
+    echo "Error creating database: " . mysqli_error();
 }
 
 // Create table in my_db database
-mysql_select_db("my_db", $con);
+mysqli_select_db("my_db", $con);
 $sql = "CREATE TABLE Persons 
 (
 FirstName varchar(15),
 LastName varchar(15),
 Age int
 )";
-mysql_query($sql,$con);
+mysqli_query($sql,$con);
 
-mysql_close($con);
+mysqli_close($con);
 
-//重要事项：在创建表之前，必须首先选择数据库。通过 mysql_select_db() 函数选取数据库。
+//重要事项：在创建表之前，必须首先选择数据库。通过 mysqli_select_db() 函数选取数据库。
 //注释：当创建 varchar 类型的数据库字段时，必须规定该字段的最大长度，例如：varchar(15)。
 
 
@@ -142,7 +142,7 @@ LastName varchar(15),
 Age int
 )";
 
-mysql_query($sql,$con);
+mysqli_query($sql,$con);
 
 
 ?>
