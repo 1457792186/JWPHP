@@ -258,22 +258,27 @@ delete from tb_admin where user='小欣'
 
 //——————————————————————————数据库的备份和恢复
 
+//数据库的备份
+//在命令行模式下完成对数据库的备份,使用的是MYSQLDUMP命令。通过该命令可以将数据以文本文件的形式存储到指定的文件夹下
+//说明:要在命令行模式下操作MySQL数据库,必须要对电脑的环境变量进行设置,右击'我的电脑',在弹出的快捷菜单中选择'属性'命令,
+//      在弹出的"属性"对话框中选择"高级"->"环境变量",在用户变量的列表框中找到变量PATH并选中,
+//      单击"编辑"按钮,在变量PATH的变量值文本框中添加"D:\webpage\AppSerc\MyDQL\bin"(MySQL数据库中bin文件夹的安装路径)
+//      然后单击"确定"按钮即可。其中添加的bin文件夹路径根据自己安装MySQL数据库的位置而定
+
+//通过MYSQLDUMP命令备份整个数据库的操作步骤
+//1.选择"开始"->"运行"->输入cmd,进入命令行模式
+//2.直接输入"mysqldump -uroot -ptoot db_database16 >F:\db_database16.txt"
+mysqldump -uroot -ptoot db_database16 >F:\db_database16.txt
+//其中,-uroot中的"root"为用户名,-proot中的"root"是密码,db_database16是数据库名,F:\db_database16.txt是数据库备份位置
+//  -uroot输入中间没有空格,也没有结束符,直接Enter
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+//数据库的恢复
+//命令格式如下:
+mysql -uroot -proot db_database <F:\db_database16.txt
+//其中mysql是使用的命令,-u后的root是用户名,-p后的root是密码,db_database代表的是数据库名或者表名,<后的F:\db_database16.txt是备份文件存储位置
+//  在进行数据库的恢复时,在MySQL数据库中必须存在一个空的、将要恢复的数据库,否则就会出现错误
 
 
 
