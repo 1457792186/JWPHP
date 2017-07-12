@@ -285,16 +285,148 @@ mysql -uroot -proot db_database <F:\db_database16.txt
 
 
 
+//——————————————————————————————————触发器
+//触发器(trigger)：监视某种情况，并触发某种操作。
+//触发器创建语法四要素：
+//1.监视地点(table)
+//2.监视事件(insert/update/delete)
+//3.触发时间(after/before)
+//4.触发事件(insert/update/delete)
+
+//语法：
+create trigger triggerName
+
+after/before insert/update/delete on 表名
+
+for each row   #这句话在mysql是固定的
+
+    begin
+
+sql语句;
+
+end;
+
+//注：各自对应上面的四要素。
+
+//实例:首先来创建两张表：
+#商品表
+create table g(
+    id int primary key auto_increment,
+    name varchar(20),
+    num int
+);
+
+#订单表
+create table o(
+    oid int primary key auto_increment,
+    gid int,
+    much int
+);
+
+insert into g(name,num) values('商品1',10),('商品2',10),('商品3',10);
+
+//如果在没使用触发器之前：假设现在卖了3个商品1，需要做两件事
+//1.往订单表插入一条记录
+insert into o(gid,much) values(1,3);
+//2.更新商品表商品1的剩余数量
+update g set num=num-3 where id=1;
 
 
+//现在，来创建一个触发器：
+//需要先执行该语句：delimiter $(意思是告诉mysql语句的结尾换成以$结束)
+
+create trigger tg1
+after insert on o
+for each row
+    begin
+update g set num=num-3 where id=1;
+end$
+
+//这时候只要执行：
+
+insert into o(gid,much) values(1,3)$
+
+//会发现商品1的数量变为7了，说明在插入一条订单的时候，触发器自动做了更新操作。
 
 
+//但现在会有一个问题，因为触发器里面num和id都是写死的
+//  所以不管买哪个商品，最终更新的都是商品1的数量。
+//  比如：往订单表再插入一条记录：
+//       insert into o(gid,much) values(2,3),执行完后会发现商品1的数量变4了，而商品2的数量没变
+//       这样显然不是想要的结果。需要改之前创建的触发器。
+
+//如何在触发器引用行的值，也就是说要得到新插入的订单记录中的gid或much的值。
+
+//对于insert而言，新插入的行用new来表示，行中的每一列的值用new.列名来表示。
+//  所以现在可以这样来改触发器
+
+create trigger tg2
+after insert on o
+for each row
+    begin
+update g set num=num-new.much where id=new.gid;(注意此处和第一个触发器的不同)
+end$
+
+//第二个触发器创建完毕，先把第一个触发器删掉
+
+drop trigger tg1$
+
+//再来测试一下，插入一条订单记录：insert into o(gid,much) values(2,3)$
+//执行完发现商品2的数量变为7了，现在就对了。
+
+//现在还存在两种情况：
+//1.当用户撤销一个订单的时候，这边直接删除一个订单，是不是需要把对应的商品数量再加回去呢？
+//2.当用户修改一个订单的数量时，触发器修改怎么写?
+
+//先分析一下第一种情况：
+//  监视地点：o表
+//  监视事件：delete
+//  触发时间：after
+//  触发事件：update
+
+//对于delete而言：原本有一行,后来被删除，想引用被删除的这一行，用old来表示，old.列名可以引用被删除的行的值。
+//  那触发器就该这样写：
+
+create trigger tg3
+after delete on o
+for each row
+    begin
+update g set num = num + old.much where id = old.gid;(注意这边的变化)
+end$
+
+//创建完毕
+//  再执行delete from o where oid = 2$
+//  会发现商品2的数量又变为10了。
 
 
+//第二种情况：
+//  监视地点：o表
+//  监视事件：update
+//  触发时间：after
 
+//触发事件：update
+//  对于update而言：被修改的行，修改前的数据，用old来表示，old.列名引用被修改之前行中的值；
+//  修改的后的数据，用new来表示，new.列名引用被修改之后行中的值。
+//  那触发器就该这样写：
 
+create trigger tg4
+after update on o
+for each row
+    begin
+update g set num = num+old.much-new.much where id = old/new.gid;
+end$
 
+//先把旧的数量恢复再减去新的数量就是修改后的数量了。
+//  测试下：先把商品表和订单表的数据都清掉，易于测试。
+//  假设往商品表插入三个商品，数量都是10，
+//  买3个商品1：
+insert into o(gid,much) values(1,3)$
+//  这时候商品1的数量变为7；
 
+//  我们再修改插入的订单记录:
+update o set much = 5 where oid = 1$
+
+//变为买5个商品1，这时候再查询商品表就会发现商品1的数量只剩5了，说明触发器发挥作用了
 
 
 
