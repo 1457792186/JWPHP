@@ -27,6 +27,10 @@ Fatal error: Uncaught exception 'think\exception\ErrorException' with message 'm
 这里是当前项目的目录并没有权限去mkdir，所以通过终端找到根目录，即TestPorject目录
 输入:
 sudo chmod -R 777 路径
+
+
+Uncaught exception 'think\exception\ErrorException' with message 'mkdir(): Per错误提示前往tp5文件夹(给runtime文件夹权限)
+chmod -R 777 runtime
 */
 
 //CURD
@@ -176,28 +180,6 @@ return array(
 
 
 //————————————————————————————ThinkPHP的控制器————————————————————————————
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
