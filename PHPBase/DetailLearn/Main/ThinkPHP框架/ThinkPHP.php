@@ -5,6 +5,8 @@
 //GitHub： https://github.com/top-think/think.git
 //说明:https://www.kancloud.cn/thinkphp/thinkphp5_quickstart/145249
 /*
+
+
 首先克隆下载应用项目仓库
 
 git clone https://github.com/top-think/think tp5
@@ -37,7 +39,65 @@ chmod -R 777 runtime
 //是数据库操作的缩写词,C代表创建(Create)、U代表更新(Update)、R代表(Read)、D代表删除(Delete)。
 //在具体应用中并非一定要使用create、update、read和delete,功能是一致的,如ThinkPHP就是使用add()、save()、select()和delete()
 
+/*
+PHPchost配置
 
+编辑apache 的配置文件 /etc/apache2/httpd.conf
+> sudo vim /etc/apache2/httpd.conf
+找到 load...httpd-vhosts.conf 的那一行，去除行首的#，启用虚拟主机配置文件
+保存
+编辑虚拟主机文件
+
+
+> sudo vim /etc/apache2/extra/httpd-vhosts.conf
+里面有虚拟主机的配置，参考其中一个添加自己的
+<VirtualHost *:80>
+    DocumentRoot "/home/www/tp5/public"
+    ServerName tp5.com
+</VirtualHost>
+
+
+
+一般添加虚拟主机后，localhost会访问不到，需要将localhost的虚拟主机放在最上面，如图
+保存
+Mac自带的apache中如何配置虚拟主机vhost
+重启apache
+sudo apachectl restart
+
+
+
+还需编辑 /etc/hosts 文件，将ip地址对应到虚拟主机的域名商
+> sudo vim /etc/hosts
+增加
+127.0.01 localhost
+127.0.0.1 dev.bettercare.com.cn
+保存
+Mac自带的apache中如何配置虚拟主机vhost
+5
+现在在浏览器中访问
+dev.bettercare.com.cn
+就能显示了
+
+
+
+
+
+Apache开启测试
+http://localhost
+
+
+tp5测试
+http://localhost/tp5/public/
+
+
+phpMyAdmin测试：
+在浏览器中输入URL:http://localhost/phpmyadmin/
+
+
+虚拟目录测试
+
+
+*/
 
 //————————————————————————————ThinkPHP架构————————————————————————————
 
