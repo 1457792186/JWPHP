@@ -1752,18 +1752,928 @@ DROP VIEW view_name
 
 
 ————————————————————————————————————————————————————
-36.
+36.SQL Date 函数
+
+//SQL 日期
+//当处理日期时，最难的任务恐怕是确保所插入的日期的格式，与数据库中日期列的格式相匹配。
+//只要数据包含的只是日期部分，运行查询就不会出问题。但是，如果涉及时间，情况就有点复杂了。
+//在讨论日期查询的复杂性之前，先来看看最重要的内建日期处理函数。
+
+/*
+MySQL Date 函数
+下面的表格列出了 MySQL 中最重要的内建日期函数：
+函数	            描述
+NOW()	        返回当前的日期和时间
+CURDATE()	    返回当前的日期
+CURTIME()	    返回当前的时间
+DATE()	        提取日期或日期/时间表达式的日期部分
+EXTRACT()	    返回日期/时间按的单独部分
+DATE_ADD()	    给日期添加指定的时间间隔
+DATE_SUB()	    从日期减去指定的时间间隔
+DATEDIFF()	    返回两个日期之间的天数
+DATE_FORMAT()	用不同的格式显示日期/时间
+
+SQL Server Date 函数
+下面的表格列出了 SQL Server 中最重要的内建日期函数：
+函数	            描述
+GETDATE()	    返回当前日期和时间
+DATEPART()	    返回日期/时间的单独部分
+DATEADD()	    在日期中添加或减去指定的时间间隔
+DATEDIFF()	    返回两个日期之间的时间
+CONVERT()	    用不同的格式显示日期/时间
+
+
+
+SQL Date 数据类型
+MySQL 使用下列数据类型在数据库中存储日期或日期/时间值：
+DATE            - 格式: YYYY-MM-DD
+DATETIME        - 格式: YYYY-MM-DD HH:MM:SS
+TIMESTAMP       - 格式: YYYY-MM-DD HH:MM:SS
+YEAR            - 格式: YYYY 或 YY
+
+SQL Server 使用下列数据类型在数据库中存储日期或日期/时间值：
+DATE            - 格式: YYYY-MM-DD
+DATETIME        - 格式: YYYY-MM-DD HH:MM:SS
+SMALLDATETIME   - 格式: YYYY-MM-DD HH:MM:SS
+TIMESTAMP       - 格式: 唯一的数字
+*/
+
+
+//SQL 日期处理
+//如果不涉及时间部分，那么可以轻松地比较两个日期
+
+/*
+"Orders" 表：
+OrderId	ProductName	    OrderDate
+1	    computer	    2008-12-26
+2	    printer	        2008-12-26
+3	    electrograph	2008-11-12
+4	    telephone	    2008-10-19
+*/
+//现在，希望从上表中选取 OrderDate 为 "2008-12-26" 的记录。
+//使用如下 SELECT 语句：
+SELECT * FROM Orders WHERE OrderDate='2008-12-26'
+/*
+结果集：
+OrderId	ProductName	    OrderDate
+1	    computer	    2008-12-26
+3	    electrograph	2008-12-26
+*/
+
+/*
+现在假设 "Orders" 类似这样（请注意 "OrderDate" 列中的时间部分）
+OrderId	ProductName	    OrderDate
+1	    computer	    2008-12-26 16:23:55
+2	    printer	        2008-12-26 10:45:26
+3	    electrograph	2008-11-12 14:12:08
+4	    telephone	    2008-10-19 12:56:10
+*/
+//如果使用上面的 SELECT 语句：
+SELECT * FROM Orders WHERE OrderDate='2008-12-26'
+//那么得不到结果。这是由于该查询不含有时间部分的日期。
+//提示：如果希望使查询简单且更易维护，那么请不要在日期中使用时间部分！
+
+
+
+
+————————————————————————————————————————————————————
+37.SQL NULL 值
+
+//NULL 值是遗漏的未知数据。
+//默认地，表的列可以存放 NULL 值。
+//讲解 IS NULL 和 IS NOT NULL 操作符
+
+//QL NULL 值
+//如果表中的某个列是可选的，那么可以在不向该列添加值的情况下插入新记录或更新已有的记录。这意味着该字段将以 NULL 值保存。
+//NULL 值的处理方式与其他值不同。
+//NULL 用作未知的或不适用的值的占位符。
+//注释：无法比较 NULL 和 0；它们是不等价的。
+
+
+//SQL 的 NULL 值处理
+/*
+请看下面的 "Persons" 表：
+Id	LastName	FirstName   Address	        City
+1	Adams	    John	 	                London
+2	Bush	    George      Fifth Avenue    New York
+3	Carter	    Thomas	 	                Beijing
+*/
+//假如 "Persons" 表中的 "Address" 列是可选的。这意味着如果在 "Address" 列插入一条不带值的记录，"Address" 列会使用 NULL 值保存
+
+//如何测试 NULL 值呢？
+//无法使用比较运算符来测试 NULL 值，比如 =, <, 或者 <>。
+//必须使用 IS NULL 和 IS NOT NULL 操作符
+
+
+//SQL IS NULL
+//如何仅仅选取在 "Address" 列中带有 NULL 值的记录呢？
+//必须使用 IS NULL 操作符：
+SELECT LastName,FirstName,Address FROM Persons
+WHERE Address IS NULL
+/*
+结果集：
+LastName	FirstName	Address
+Adams	    John
+Carter	    Thomas
+*/
+//提示：请始终使用 IS NULL 来查找 NULL 值
+
+
+//SQL IS NOT NULL
+//如何选取在 "Address" 列中不带有 NULL 值的记录呢？
+//必须使用 IS NOT NULL 操作符：
+SELECT LastName,FirstName,Address FROM Persons
+WHERE Address IS NOT NULL
+/*
+结果集：
+LastName	FirstName	Address
+Bush	    George	    Fifth Avenue
+*/
+
+
+
+————————————————————————————————————————————————————
+38.SQL NULL 函数
+
+//SQL ISNULL()、NVL()、IFNULL() 和 COALESCE() 函数
+
+/*
+请看下面的 "Products" 表：
+P_Id	ProductName	UnitPrice	UnitsInStock	UnitsOnOrder
+1	    computer	699	        25	            15
+2	    printer	    365	        36
+3	    telephone	280	        159	            57
+*/
+//假如 "UnitsOnOrder" 是可选的，而且可以包含 NULL 值。
+//使用如下 SELECT 语句：
+SELECT ProductName,UnitPrice*(UnitsInStock+UnitsOnOrder)
+FROM Products
+//在上面的例子中，如果有 "UnitsOnOrder" 值是 NULL，那么结果是 NULL。
+//微软的 ISNULL() 函数用于规定如何处理 NULL 值。
+//NVL(), IFNULL() 和 COALESCE() 函数也可以达到相同的结果。
+//在这里，希望 NULL 值为 0。
+//下面，如果 "UnitsOnOrder" 是 NULL，则不利于计算，因此如果值是 NULL 则 ISNULL() 返回 0
+
+//SQL Server / MS Access
+SELECT ProductName,UnitPrice*(UnitsInStock+ISNULL(UnitsOnOrder,0))
+FROM Products
+
+//Oracle
+//Oracle 没有 ISNULL() 函数。不过，可以使用 NVL() 函数达到相同的结果：
+SELECT ProductName,UnitPrice*(UnitsInStock+NVL(UnitsOnOrder,0))
+FROM Products
+
+
+//MySQL
+//MySQL 也拥有类似 ISNULL() 的函数。不过它的工作方式与微软的 ISNULL() 函数有点不同。
+//在 MySQL 中，可以使用 IFNULL() 函数，就像这样：
+SELECT ProductName,UnitPrice*(UnitsInStock+IFNULL(UnitsOnOrder,0))
+FROM Products
+//或者可以使用 COALESCE() 函数，就像这样：
+SELECT ProductName,UnitPrice*(UnitsInStock+COALESCE(UnitsOnOrder,0))
+FROM Products
 
 
 
 
 
 
+————————————————————————————————————————————————————
+39.SQL 数据类型
+
+//Microsoft Access、MySQL 以及 SQL Server 所使用的数据类型和范围
+
+/*
+Microsoft Access 数据类型
+数据类型	        描述	                                                              存储
+Text	        用于文本或文本与数字的组合。                                          最多 255 个字符。
+Memo            Memo 用于更大数量的文本。                                            最多存储 65,536 个字符。
+                注释：无法对 memo 字段进行排序。不过它们是可搜索的。
+Byte	        允许 0 到 255 的数字。	                                          1 字节
+Integer	        允许介于 -32,768 到 32,767 之间的数字。	                              2 字节
+Long	        允许介于 -2,147,483,648 与 2,147,483,647 之间的全部数字	              4 字节
+Single	        单精度浮点。处理大多数小数。	                                      4 字节
+Double	        双精度浮点。处理大多数小数。	                                      8 字节
+Currency        用于货币。支持 15 位的元，外加 4 位小数。                              8 字节
+                提示：可以选择使用哪个国家的货币。
+AutoNumber	    AutoNumber 字段自动为每条记录分配数字，通常从 1 开始。	              4 字节
+Date/Time	    用于日期和时间	                                                  8 字节
+Yes/No          逻辑字段，可以显示为 Yes/No、True/False 或 On/Off。                   1 比特
+                在代码中，使用常量 True 和 False （等价于 1 和 0）
+                注释：Yes/No 字段中不允许 Null 值
+Ole Object	    可以存储图片、音频、视频或其他 BLOBs (Binary Large OBjects)	          最多 1GB
+Hyperlink	    包含指向其他文件的链接，包括网页。
+Lookup Wizard	允许你创建一个可从下列列表中进行选择的选项列表。	                      4 字节
+*/
+
+
+/*
+MySQL 数据类型
+在 MySQL 中，有三种主要的类型：文本、数字和日期/时间类型。
+
+——————————————————————————————————————————————————————————————————————————————————
+Text 类型：
+数据类型	            描述
+CHAR(size)	        保存固定长度的字符串（可包含字母、数字以及特殊字符）。在括号中指定字符串的长度。最多 255 个字符。
+VARCHAR(size)	    保存可变长度的字符串（可包含字母、数字以及特殊字符）。在括号中指定字符串的最大长度。最多 255 个字符。
+                    注释：如果值的长度大于 255，则被转换为 TEXT 类型。
+TINYTEXT	        存放最大长度为 255 个字符的字符串。
+TEXT	            存放最大长度为 65,535 个字符的字符串。
+BLOB	            用于 BLOBs (Binary Large OBjects)。存放最多 65,535 字节的数据。
+MEDIUMTEXT	        存放最大长度为 16,777,215 个字符的字符串。
+MEDIUMBLOB	        用于 BLOBs (Binary Large OBjects)。存放最多 16,777,215 字节的数据。
+LONGTEXT	        存放最大长度为 4,294,967,295 个字符的字符串。
+LONGBLOB	        用于 BLOBs (Binary Large OBjects)。存放最多 4,294,967,295 字节的数据。
+ENUM(x,y,z,etc.)    允许你输入可能值的列表。可以在 ENUM 列表中列出最大 65535 个值。如果列表中不存在插入的值，则插入空值。
+                    注释：这些值是按照你输入的顺序存储的。
+                    可以按照此格式输入可能的值：ENUM('X','Y','Z')
+SET	                与 ENUM 类似，SET 最多只能包含 64 个列表项，不过 SET 可存储一个以上的值。
+
+
+——————————————————————————————————————————————————————————————————————————————————
+Number 类型：
+数据类型	            描述
+TINYINT(size)	    -128 到 127 常规。0 到 255 无符号*。在括号中规定最大位数。
+SMALLINT(size)	    -32768 到 32767 常规。0 到 65535 无符号*。在括号中规定最大位数。
+MEDIUMINT(size)	    -8388608 到 8388607 普通。0 to 16777215 无符号*。在括号中规定最大位数。
+INT(size)	        -2147483648 到 2147483647 常规。0 到 4294967295 无符号*。在括号中规定最大位数。
+BIGINT(size)	    -9223372036854775808 到 9223372036854775807 常规。0 到 18446744073709551615 无符号*。在括号中规定最大位数。
+FLOAT(size,d)	    带有浮动小数点的小数字。在括号中规定最大位数。在 d 参数中规定小数点右侧的最大位数。
+DOUBLE(size,d)	    带有浮动小数点的大数字。在括号中规定最大位数。在 d 参数中规定小数点右侧的最大位数。
+DECIMAL(size,d)	    作为字符串存储的 DOUBLE 类型，允许固定的小数点。
+
+* 这些整数类型拥有额外的选项 UNSIGNED。通常，整数可以是负数或正数。如果添加 UNSIGNED 属性，那么范围将从 0 开始，而不是某个负数。
+
+——————————————————————————————————————————————————————————————————————————————————
+Date 类型：
+数据类型	            描述
+DATE()	            日期。格式：YYYY-MM-DD
+                    注释：支持的范围是从 '1000-01-01' 到 '9999-12-31'
+DATETIME()          *日期和时间的组合。格式：YYYY-MM-DD HH:MM:SS
+                    注释：支持的范围是从 '1000-01-01 00:00:00' 到 '9999-12-31 23:59:59'
+TIMESTAMP()         *时间戳。TIMESTAMP 值使用 Unix 纪元('1970-01-01 00:00:00' UTC) 至今的描述来存储。格式：YYYY-MM-DD HH:MM:SS
+                    注释：支持的范围是从 '1970-01-01 00:00:01' UTC 到 '2038-01-09 03:14:07' UTC
+TIME()	            时间。格式：HH:MM:SS 注释：支持的范围是从 '-838:59:59' 到 '838:59:59'
+YEAR()              2 位或 4 位格式的年。
+                    注释：4 位格式所允许的值：1901 到 2155。2 位格式所允许的值：70 到 69，表示从 1970 到 2069。
+
+* 即便 DATETIME 和 TIMESTAMP 返回相同的格式，它们的工作方式很不同。
+ * 在 INSERT 或 UPDATE 查询中，TIMESTAMP 自动把自身设置为当前的日期和时间。
+ * TIMESTAMP 也接受不同的格式，比如 YYYYMMDDHHMMSS、YYMMDDHHMMSS、YYYYMMDD 或 YYMMDD。
+
+
+*/
+
+/*
+SQL Server 数据类型
+
+——————————————————————————————————————————————————————————————————————————————————
+Character 字符串：
+数据类型	        描述	                                                存储
+char(n)	        固定长度的字符串。最多 8,000 个字符。	                n
+varchar(n)	    可变长度的字符串。最多 8,000 个字符。
+varchar(max)	可变长度的字符串。最多 1,073,741,824 个字符。
+text	        可变长度的字符串。最多 2GB 字符数据。
+
+
+——————————————————————————————————————————————————————————————————————————————————
+Unicode 字符串：
+数据类型	        描述	                                                存储
+nchar(n)	    固定长度的 Unicode 数据。最多 4,000 个字符。
+nvarchar(n)	    可变长度的 Unicode 数据。最多 4,000 个字符。
+nvarchar(max)	可变长度的 Unicode 数据。最多 536,870,912 个字符。
+ntext	        可变长度的 Unicode 数据。最多 2GB 字符数据。
+
+——————————————————————————————————————————————————————————————————————————————————
+Binary 类型：
+数据类型	        描述	                                                存储
+bit	            允许 0、1 或 NULL
+binary(n)	    固定长度的二进制数据。最多 8,000 字节。
+varbinary(n)	可变长度的二进制数据。最多 8,000 字节。
+varbinary(max)	可变长度的二进制数据。最多 2GB 字节。
+image	        可变长度的二进制数据。最多 2GB。
+
+
+
+——————————————————————————————————————————————————————————————————————————————————
+Number 类型：
+数据类型	        描述	                                                存储
+tinyint	        允许从 0 到 255 的所有数字。	                        1 字节
+smallint	    允许从 -32,768 到 32,767 的所有数字。	2 字节
+int	            允许从 -2,147,483,648 到 2,147,483,647 的所有数字。	4 字节
+bigint	        允许介于 -9,223,372,036,854,775,808                  8 字节
+                和 9,223,372,036,854,775,807 之间的所有数字。
+decimal(p,s)    固定精度和比例的数字。                                 5-17 字节
+                允许从 -10^38 +1 到 10^38 -1 之间的数字。
+                p 参数指示可以存储的最大位数（小数点左侧和右侧）。
+                    p 必须是 1 到 38 之间的值。默认是 18。
+                s 参数指示小数点右侧存储的最大位数。
+                    s 必须是 0 到 p 之间的值。默认是 0。
+numeric(p,s)    固定精度和比例的数字。                                 5-17 字节
+                允许从 -10^38 +1 到 10^38 -1 之间的数字。
+                p 参数指示可以存储的最大位数（小数点左侧和右侧）。
+                    p 必须是 1 到 38 之间的值。默认是 18。
+                s 参数指示小数点右侧存储的最大位数。
+                    s 必须是 0 到 p 之间的值。默认是 0。
+smallmoney	    介于 -214,748.3648 和 214,748.3647 之间的货币数据。	    4 字节
+money	        介于 -922,337,203,685,477.5808                       8 字节
+                和 922,337,203,685,477.5807 之间的货币数据。
+float(n)	    从 -1.79E + 308 到 1.79E + 308 的浮动精度数字数据。    4 或 8 字节
+                参数 n 指示该字段保存 4 字节还是 8 字节。
+                float(24) 保存 4 字节，而 float(53) 保存 8 字节。
+                n 的默认值是 53。
+real	        从 -3.40E + 38 到 3.40E + 38 的浮动精度数字数据。	    4 字节
+
+——————————————————————————————————————————————————————————————————————————————————
+Date 类型：
+数据类型	        描述	                                                            存储
+datetime	    从 1753 年 1 月 1 日 到 9999 年 12 月 31 日，精度为 3.33 毫秒。	    8 bytes
+datetime2	    从 1753 年 1 月 1 日 到 9999 年 12 月 31 日，精度为 100 纳秒。	    6-8 bytes
+smalldatetime	从 1900 年 1 月 1 日 到 2079 年 6 月 6 日，精度为 1 分钟。	        4 bytes
+date	        仅存储日期。从 0001 年 1 月 1 日 到 9999 年 12 月 31 日。	        3 bytes
+time	        仅存储时间。精度为 100 纳秒。	                                    3-5 bytes
+datetimeoffset	与 datetime2 相同，外加时区偏移。	                                8-10 bytes
+timestamp	    存储唯一的数字，每当创建或修改某行时，该数字会更新。
+                timestamp 基于内部时钟，不对应真实时间。
+                每个表只能有一个 timestamp 变量。
+
+
+
+——————————————————————————————————————————————————————————————————————————————————
+其他数据类型：
+数据类型	            描述
+sql_variant	        存储最多 8,000 字节不同数据类型的数据，除了 text、ntext 以及 timestamp。
+uniqueidentifier	存储全局标识符 (GUID)。
+xml	                存储 XML 格式化数据。最多 2GB。
+cursor	            存储对用于数据库操作的指针的引用。
+table	            存储结果集，供稍后处理。
+
+
+
+*/
+
+
+
+
+————————————————————————————————————————————————————
+40.SQL 服务器 - RDBMS
+
+//现代的 SQL 服务器构建在 RDBMS 之上
+
+//DBMS - 数据库管理系统（Database Management System）
+//数据库管理系统是一种可以访问数据库中数据的计算机程序。
+//DBMS 使我们有能力在数据库中提取、修改或者存贮信息。
+//不同的 DBMS 提供不同的函数供查询、提交以及修改数据。
+
+
+//RDBMS - 关系数据库管理系统（Relational Database Management System）
+//关系数据库管理系统 (RDBMS) 也是一种数据库管理系统，其数据库是根据数据间的关系来组织和访问数据的。
+//20 世纪 70 年代初，IBM 公司发明了 RDBMS。
+//RDBMS 是 SQL 的基础，也是所有现代数据库系统诸如 Oracle、SQL Server、IBM DB2、Sybase、MySQL 以及 Microsoft Access 的基础。
 
 
 
 
 
+————————————————————————————————————————————————————
+41.SQL 函数
+
+//SQL 拥有很多可用于计数和计算的内建函数
+
+//函数的语法
+//内建 SQL 函数的语法是
+SELECT function(列) FROM 表
+
+//函数的类型
+//在 SQL 中，基本的函数类型和种类有若干种。函数的基本类型是：
+Aggregate 函数
+Scalar 函数
+
+
+//合计函数（Aggregate functions）
+//Aggregate 函数的操作面向一系列的值，并返回一个单一的值。
+//注释：如果在 SELECT 语句的项目列表中的众多其它表达式中使用 SELECT 语句，则这个 SELECT 必须使用 GROUP BY 语句！
+
+
+/*
+"Persons" 表
+Name	        Age
+Adams, John	    38
+Bush, George	33
+Carter, Thomas	28
+*/
+
+/*
+MS Access 中的合计函数
+函数	                    描述
+AVG(column)	            返回某列的平均值
+COUNT(column)	        返回某列的行数（不包括 NULL 值）
+COUNT(*)	            返回被选行数
+FIRST(column)	        返回在指定的域中第一个记录的值
+LAST(column)	        返回在指定的域中最后一个记录的值
+MAX(column)	            返回某列的最高值
+MIN(column)	            返回某列的最低值
+STDEV(column)
+STDEVP(column)
+SUM(column)	            返回某列的总和
+VAR(column)
+VARP(column)
+
+————————————————————————————————————————————————————
+在 SQL Server 中的合计函数
+函数	                    描述
+AVG(column)	            返回某列的平均值
+BINARY_CHECKSUM
+CHECKSUM
+CHECKSUM_AGG
+COUNT(column)	        返回某列的行数（不包括NULL值）
+COUNT(*)	            返回被选行数
+COUNT(DISTINCT column)	返回相异结果的数目
+FIRST(column)	        返回在指定的域中第一个记录的值（SQLServer2000 不支持）
+LAST(column)	        返回在指定的域中最后一个记录的值（SQLServer2000 不支持）
+MAX(column)	            返回某列的最高值
+MIN(column)	            返回某列的最低值
+STDEV(column)
+STDEVP(column)
+SUM(column)	            返回某列的总和
+VAR(column)
+VARP(column)
+
+————————————————————————————————————————————————————
+Scalar 函数
+Scalar 函数的操作面向某个单一的值，并返回基于输入值的一个单一的值。
+MS Access 中的 Scalar 函数
+函数	                    描述
+UCASE(c)	            将某个域转换为大写
+LCASE(c)	            将某个域转换为小写
+MID(c,start[,end])	    从某个文本域提取字符
+LEN(c)	                返回某个文本域的长度
+INSTR(c,char)	        返回在某个文本域中指定字符的数值位置
+LEFT(c,number_of_char)	返回某个被请求的文本域的左侧部分
+RIGHT(c,number_of_char)	返回某个被请求的文本域的右侧部分
+ROUND(c,decimals)	    对某个数值域进行指定小数位数的四舍五入
+MOD(x,y)	            返回除法操作的余数
+NOW()	                返回当前的系统日期
+FORMAT(c,format)	    改变某个域的显示方式
+DATEDIFF(d,date1,date2)	用于执行日期计算
+
+*/
+
+
+
+
+————————————————————————————————————————————————————
+42.SQL AVG 函数
+
+//定义和用法
+//AVG 函数返回数值列的平均值。NULL 值不包括在计算中。
+//SQL AVG() 语法
+SELECT AVG(column_name) FROM table_name
+
+
+//SQL AVG() 实例
+/*
+"Orders" 表：
+O_Id	OrderDate	OrderPrice	Customer
+1	    2008/12/29	1000	    Bush
+2	    2008/11/23	1600	    Carter
+3	    2008/10/05	700	        Bush
+4	    2008/09/28	300	        Bush
+5	    2008/08/06	2000	    Adams
+6	    2008/07/21	100	        Carter
+*/
+
+//例子 1
+//现在，希望计算 "OrderPrice" 字段的平均值。
+//使用如下 SQL 语句：
+SELECT AVG(OrderPrice) AS OrderAverage FROM Orders
+/*
+结果集类似这样：
+OrderAverage
+950
+*/
+
+//例子 2
+//现在，希望找到 OrderPrice 值高于 OrderPrice 平均值的客户。
+//使用如下 SQL 语句：
+SELECT Customer FROM Orders
+WHERE OrderPrice>(SELECT AVG(OrderPrice) FROM Orders)
+/*
+结果集类似这样：
+Customer
+Bush
+Carter
+Adams
+*/
+
+
+
+
+
+
+————————————————————————————————————————————————————
+43.SQL COUNT() 函数
+
+
+//COUNT() 函数返回匹配指定条件的行数。
+
+//SQL COUNT() 语法
+//SQL COUNT(column_name) 语法
+//COUNT(column_name) 函数返回指定列的值的数目（NULL 不计入）：
+SELECT COUNT(column_name) FROM table_name
+
+//SQL COUNT(*) 语法
+//COUNT(*) 函数返回表中的记录数：
+SELECT COUNT(*) FROM table_name
+
+//SQL COUNT(DISTINCT column_name) 语法
+//COUNT(DISTINCT column_name) 函数返回指定列的不同值的数目：
+SELECT COUNT(DISTINCT column_name) FROM table_name
+//注释：COUNT(DISTINCT) 适用于 ORACLE 和 Microsoft SQL Server，但是无法用于 Microsoft Access。
+
+
+//SQL COUNT(column_name) 实例
+/*
+ "Orders" 表：
+O_Id	OrderDate	OrderPrice	Customer
+1	    2008/12/29	1000	    Bush
+2	    2008/11/23	1600	    Carter
+3	    2008/10/05	700	        Bush
+4	    2008/09/28	300	        Bush
+5	    2008/08/06	2000	    Adams
+6	    2008/07/21	100	        Carter
+
+*/
+//现在，希望计算客户 "Carter" 的订单数。
+//使用如下 SQL 语句：
+SELECT COUNT(Customer) AS CustomerNilsen FROM Orders
+WHERE Customer='Carter'
+/*
+以上 SQL 语句的结果是 2，因为客户 Carter 共有 2 个订单
+
+结果集
+CustomerNilsen
+2
+*/
+//SQL COUNT(*) 实例
+//如果省略 WHERE 子句，比如这样
+SELECT COUNT(*) AS NumberOfOrders FROM Orders
+/*
+结果集类似这样：
+NumberOfOrders
+6
+
+这是表中的总行数
+*/
+
+
+//SQL COUNT(DISTINCT column_name) 实例
+//现在，希望计算 "Orders" 表中不同客户的数目。
+//使用如下 SQL 语句：
+SELECT COUNT(DISTINCT Customer) AS NumberOfCustomers FROM Orders
+/*
+结果集类似这样：
+NumberOfCustomers
+3
+
+这是 "Orders" 表中不同客户（Bush, Carter 和 Adams）的数目
+*/
+
+
+
+
+
+————————————————————————————————————————————————————
+44.SQL FIRST() 函数
+
+
+//FIRST() 函数
+//FIRST() 函数返回指定的字段中第一个记录的值。
+//提示：可使用 ORDER BY 语句对记录进行排序
+
+//SQL FIRST() 语法
+SELECT FIRST(column_name) FROM table_name
+
+
+//SQL FIRST() 实例
+/*
+ "Orders" 表：
+O_Id	OrderDate	OrderPrice	Customer
+1	    2008/12/29	1000	    Bush
+2	    2008/11/23	1600	    Carter
+3	    2008/10/05	700	        Bush
+4	    2008/09/28	300	        Bush
+5	    2008/08/06	2000	    Adams
+6	    2008/07/21	100	        Carter
+
+*/
+//现在，希望查找 "OrderPrice" 列的第一个值。
+//使用如下 SQL 语句：
+SELECT FIRST(OrderPrice) AS FirstOrderPrice FROM Orders
+/*
+结果集类似这样：
+FirstOrderPrice
+1000
+*/
+
+
+
+
+
+————————————————————————————————————————————————————
+45.SQL LAST() 函数
+
+//LAST() 函数
+//LAST() 函数返回指定的字段中最后一个记录的值。
+//提示：可使用 ORDER BY 语句对记录进行排序
+
+
+//SQL LAST() 语法
+SELECT LAST(column_name) FROM table_name
+
+//SQL LAST() 实例
+/*
+ "Orders" 表：
+O_Id	OrderDate	OrderPrice	Customer
+1	    2008/12/29	1000	    Bush
+2	    2008/11/23	1600	    Carter
+3	    2008/10/05	700	        Bush
+4	    2008/09/28	300	        Bush
+5	    2008/08/06	2000	    Adams
+6	    2008/07/21	100	        Carter
+
+*/
+//现在，希望查找 "OrderPrice" 列的最后一个值。
+//使用如下 SQL 语句：
+SELECT LAST(OrderPrice) AS LastOrderPrice FROM Orders
+/*
+结果集类似这样：
+LastOrderPrice
+100
+*/
+
+
+
+
+————————————————————————————————————————————————————
+46.SQL MAX() 函数
+
+//MAX() 函数
+//MAX 函数返回一列中的最大值。NULL 值不包括在计算中
+
+
+//SQL MAX() 语法
+SELECT MAX(column_name) FROM table_name
+//注释：MIN 和 MAX 也可用于文本列，以获得按字母顺序排列的最高或最低值。
+
+
+//SQL MAX() 实例
+/*
+ "Orders" 表：
+O_Id	OrderDate	OrderPrice	Customer
+1	    2008/12/29	1000	    Bush
+2	    2008/11/23	1600	    Carter
+3	    2008/10/05	700	        Bush
+4	    2008/09/28	300	        Bush
+5	    2008/08/06	2000	    Adams
+6	    2008/07/21	100	        Carter
+
+*/
+//现在，希望查找 "OrderPrice" 列的最大值。
+//使用如下 SQL 语句：
+SELECT MAX(OrderPrice) AS LargestOrderPrice FROM Orders
+/*
+结果集类似这样：
+LargestOrderPrice
+2000
+*/
+
+
+
+
+
+
+————————————————————————————————————————————————————
+47.SQL MIN() 函数
+
+//MIN() 函数
+//MIN 函数返回一列中的最小值。NULL 值不包括在计算中。
+
+
+//SQL MIN() 语法
+SELECT MIN(column_name) FROM table_name
+//注释：MIN 和 MAX 也可用于文本列，以获得按字母顺序排列的最高或最低值
+
+//SQL MIN() 实例
+/*
+ "Orders" 表：
+O_Id	OrderDate	OrderPrice	Customer
+1	    2008/12/29	1000	    Bush
+2	    2008/11/23	1600	    Carter
+3	    2008/10/05	700	        Bush
+4	    2008/09/28	300	        Bush
+5	    2008/08/06	2000	    Adams
+6	    2008/07/21	100	        Carter
+
+*/
+//现在，希望查找 "OrderPrice" 列的最小值。
+//使用如下 SQL 语句：
+SELECT MIN(OrderPrice) AS SmallestOrderPrice FROM Orders
+/*
+结果集类似这样：
+SmallestOrderPrice
+100
+*/
+
+
+
+
+————————————————————————————————————————————————————
+48.SQL SUM() 函数
+
+//SUM() 函数
+//SUM 函数返回数值列的总数（总额）。
+
+
+//SQL SUM() 语法
+SELECT SUM(column_name) FROM table_name
+
+
+//SQL SUM() 实例
+/*
+ "Orders" 表：
+O_Id	OrderDate	OrderPrice	Customer
+1	    2008/12/29	1000	    Bush
+2	    2008/11/23	1600	    Carter
+3	    2008/10/05	700	        Bush
+4	    2008/09/28	300	        Bush
+5	    2008/08/06	2000	    Adams
+6	    2008/07/21	100	        Carter
+
+*/
+//现在，希望查找 "OrderPrice" 字段的总数。
+//使用如下 SQL 语句：
+SELECT SUM(OrderPrice) AS OrderTotal FROM Orders
+/*
+结果集类似这样：
+OrderTotal
+5700
+*/
+
+
+
+
+
+————————————————————————————————————————————————————
+49.SQL GROUP BY 语句
+
+//合计函数 (比如 SUM) 常常需要添加 GROUP BY 语句
+
+//GROUP BY 语句
+//GROUP BY 语句用于结合合计函数，根据一个或多个列对结果集进行分组
+
+
+//SQL GROUP BY 语法
+SELECT column_name, aggregate_function(column_name)
+FROM table_name
+WHERE column_name operator value
+GROUP BY column_name
+
+
+//SQL GROUP BY 实例
+/*
+ "Orders" 表：
+O_Id	OrderDate	OrderPrice	Customer
+1	    2008/12/29	1000	    Bush
+2	    2008/11/23	1600	    Carter
+3	    2008/10/05	700	        Bush
+4	    2008/09/28	300	        Bush
+5	    2008/08/06	2000	    Adams
+6	    2008/07/21	100	        Carter
+
+*/
+//现在，希望查找每个客户的总金额（总订单）。
+//想要使用 GROUP BY 语句对客户进行组合。
+//使用下列 SQL 语句：
+SELECT Customer,SUM(OrderPrice) FROM Orders
+GROUP BY Customer
+/*
+结果集类似这样：
+Customer	SUM(OrderPrice)
+Bush	    2000
+Carter	    1700
+Adams	    2000
+*/
+
+//看一下如果省略 GROUP BY 会出现什么情况：
+SELECT Customer,SUM(OrderPrice) FROM Orders
+/*
+结果集类似这样：
+Customer	SUM(OrderPrice)
+Bush	5700
+Carter	5700
+Bush	5700
+Bush	5700
+Adams	5700
+Carter	5700
+*/
+//上面的结果集不是需要的。
+//那么为什么不能使用上面这条 SELECT 语句呢？
+//解释如下：上面的 SELECT 语句指定了两列（Customer 和 SUM(OrderPrice)）。
+//    "SUM(OrderPrice)" 返回一个单独的值（"OrderPrice" 列的总计），
+//    而 "Customer" 返回 6 个值（每个值对应 "Orders" 表中的每一行）。
+//    因此，得不到正确的结果。不过，已经看到了，GROUP BY 语句解决了这个问题
+
+
+//GROUP BY 一个以上的列
+//也可以对一个以上的列应用 GROUP BY 语句，就像这样：
+SELECT Customer,OrderDate,SUM(OrderPrice) FROM Orders
+GROUP BY Customer,OrderDate
+
+
+————————————————————————————————————————————————————
+50.SQL HAVING 子句
+
+//HAVING 子句
+//在 SQL 中增加 HAVING 子句原因是，WHERE 关键字无法与合计函数一起使用
+
+//SQL HAVING 语法
+SELECT column_name, aggregate_function(column_name)
+FROM table_name
+WHERE column_name operator value
+GROUP BY column_name
+HAVING aggregate_function(column_name) operator value
+
+//SQL HAVING 实例
+/*
+ "Orders" 表：
+O_Id	OrderDate	OrderPrice	Customer
+1	    2008/12/29	1000	    Bush
+2	    2008/11/23	1600	    Carter
+3	    2008/10/05	700	        Bush
+4	    2008/09/28	300	        Bush
+5	    2008/08/06	2000	    Adams
+6	    2008/07/21	100	        Carter
+
+*/
+
+//现在，希望查找订单总金额少于 2000 的客户。
+//使用如下 SQL 语句：
+SELECT Customer,SUM(OrderPrice) FROM Orders
+GROUP BY Customer
+HAVING SUM(OrderPrice)<2000
+/*
+结果集类似：
+Customer	SUM(OrderPrice)
+Carter	    1700
+*/
+
+//现在希望查找客户 "Bush" 或 "Adams" 拥有超过 1500 的订单总金额。
+//在 SQL 语句中增加了一个普通的 WHERE 子句：
+SELECT Customer,SUM(OrderPrice) FROM Orders
+WHERE Customer='Bush' OR Customer='Adams'
+GROUP BY Customer
+HAVING SUM(OrderPrice)>1500
+/*
+结果集：
+Customer	SUM(OrderPrice)
+Bush	    2000
+Adams	    2000
+*/
+
+
+
+
+
+————————————————————————————————————————————————————
+51.SQL UCASE() 函数
+
+
+//UCASE() 函数
+//UCASE 函数把字段的值转换为大写。
+
+
+//SQL UCASE() 语法
+SELECT UCASE(column_name) FROM table_name
+
+//SQL UCASE() 实例
+/*
+ "Persons" 表：
+Id	LastName	FirstName	Address	        City
+1	Adams	    John	    Oxford Street	London
+2	Bush	    George	    Fifth Avenue	New York
+3	Carter	    Thomas	    Changan Street	Beijing
+*/
+//现在，希望选取 "LastName" 和 "FirstName" 列的内容，然后把 "LastName" 列转换为大写。
+//使用如下 SQL 语句：
+SELECT UCASE(LastName) as LastName,FirstName FROM Persons
+/*
+结果集类似这样：
+LastName	FirstName
+ADAMS	    John
+BUSH	    George
+CARTER	    Thomas
+*/
 
 
 
@@ -1772,49 +2682,32 @@ DROP VIEW view_name
 
 
 ————————————————————————————————————————————————————
-37.
+52.SQL LCASE() 函数
 
+//LCASE() 函数
+//LCASE 函数把字段的值转换为小写。
 
+//SQL LCASE() 语法
+SELECT LCASE(column_name) FROM table_name
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-————————————————————————————————————————————————————
-38.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-————————————————————————————————————————————————————
-39.
-
-
-
-
+//SQL LCASE() 实例
+/*
+ "Persons" 表：
+Id	LastName	FirstName	Address	        City
+1	Adams	    John	    Oxford Street	London
+2	Bush	    George	    Fifth Avenue	New York
+3	Carter	    Thomas	    Changan Street	Beijing
+*/
+//现在，希望选取 "LastName" 和 "FirstName" 列的内容，然后把 "LastName" 列转换为小写。
+//使用如下 SQL 语句：
+SELECT LCASE(LastName) as LastName,FirstName FROM Persons
+/*
+结果集类似这样：
+LastName	FirstName
+adams	    John
+bush	    George
+carter	    Thomas
+*/
 
 
 
@@ -1822,19 +2715,69 @@ DROP VIEW view_name
 
 
 ————————————————————————————————————————————————————
-40.
+53.SQL MID() 函数
+
+
+//MID() 函数
+//MID 函数用于从文本字段中提取字符。
+
+//SQL MID() 语法
+SELECT MID(column_name,start[,length]) FROM table_name
+/*
+参数	            描述
+column_name	    必需。要提取字符的字段。
+start	        必需。规定开始位置（起始值是 1）。
+length	        可选。要返回的字符数。如果省略，则 MID() 函数返回剩余文本。
+*/
+
+//SQL MID() 实例
+/*
+ "Persons" 表：
+Id	LastName	FirstName	Address	        City
+1	Adams	    John	    Oxford Street	London
+2	Bush	    George	    Fifth Avenue	New York
+3	Carter	    Thomas	    Changan Street	Beijing
+*/
+//现在，希望从 "City" 列中提取前 3 个字符。
+//使用如下 SQL 语句：
+SELECT MID(City,1,3) as SmallCity FROM Persons
+/*
+结果集类似这样：
+SmallCity
+Lon
+New
+Bei
+*/
 
 
 
+————————————————————————————————————————————————————
+54.SQL LEN() 函数
 
+//LEN() 函数
+//LEN 函数返回文本字段中值的长度。
 
+//SQL LEN() 语法
+SELECT LEN(column_name) FROM table_name
 
-
-
-
-
-
-
+//SQL LEN() 实例
+/*
+ "Persons" 表：
+Id	LastName	FirstName	Address	        City
+1	Adams	    John	    Oxford Street	London
+2	Bush	    George	    Fifth Avenue	New York
+3	Carter	    Thomas	    Changan Street	Beijing
+*/
+//现在，希望取得 "City" 列中值的长度。
+//使用如下 SQL 语句：
+SELECT LEN(City) as LengthOfCity FROM Persons
+/*
+结果集类似这样：
+LengthOfCity
+6
+8
+7
+*/
 
 
 
@@ -1842,331 +2785,245 @@ DROP VIEW view_name
 
 
 ————————————————————————————————————————————————————
-41.
+55.SQL ROUND() 函数
+
+//ROUND() 函数
+//ROUND 函数用于把数值字段舍入为指定的小数位数。
+
+
+//SQL ROUND() 语法
+SELECT ROUND(column_name,decimals) FROM table_name
+/*
+参数	            描述
+column_name	    必需。要舍入的字段。
+decimals	    必需。规定要返回的小数位数。
+
+*/
+
+//SQL ROUND() 实例
+/*
+"Products" 表：
+Prod_Id	    ProductName	    Unit	    UnitPrice
+1	        gold	        1000 g	    32.35
+2	        silver	        1000 g	    11.56
+3	        copper	        1000 g	    6.85
+*/
+//现在，希望把名称和价格舍入为最接近的整数。
+//使用如下 SQL 语句：
+SELECT ProductName, ROUND(UnitPrice,0) as UnitPrice FROM Products
+/*
+结果集类似这样：
+ProductName	    UnitPrice
+gold	        32
+silver	        12
+copper	        7
+*/
 
 
 
 
+————————————————————————————————————————————————————
+56.SQL NOW() 函数
+
+
+//NOW() 函数
+//NOW 函数返回当前的日期和时间。
+//提示：如果您在使用 Sql Server 数据库，请使用 getdate() 函数来获得当前的日期时间。
+
+//SQL NOW() 语法
+SELECT NOW() FROM table_name
+
+
+//SQL NOW() 实例
+/*
+"Products" 表：
+Prod_Id	    ProductName	    Unit	    UnitPrice
+1	        gold	        1000 g	    32.35
+2	        silver	        1000 g	    11.56
+3	        copper	        1000 g	    6.85
+*/
+//现在，希望显示当天的日期所对应的名称和价格。
+//使用如下 SQL 语句：
+SELECT ProductName, UnitPrice, Now() as PerDate FROM Products
+/*
+结果集类似这样：
+ProductName	    UnitPrice	PerDate
+gold	        32.35	    12/29/2008 11:36:05 AM
+silver	        11.56	    12/29/2008 11:36:05 AM
+copper	        6.85	    12/29/2008 11:36:05 AM
+*/
 
 
 
 
+————————————————————————————————————————————————————
+57.SQL FORMAT() 函数
+
+//FORMAT() 函数
+//FORMAT 函数用于对字段的显示进行格式化。
+
+//SQL FORMAT() 语法
+SELECT FORMAT(column_name,format) FROM table_name
+/*
+
+参数	            描述
+column_name	    必需。要格式化的字段。
+format	        必需。规定格式。
+*/
 
 
-
+//SQL FORMAT() 实例
+/*
+"Products" 表：
+Prod_Id	    ProductName	    Unit	    UnitPrice
+1	        gold	        1000 g	    32.35
+2	        silver	        1000 g	    11.56
+3	        copper	        1000 g	    6.85
+*/
+//现在，希望显示每天日期所对应的名称和价格（日期的显示格式是 "YYYY-MM-DD"）。
+//使用如下 SQL 语句：
+SELECT ProductName, UnitPrice, FORMAT(Now(),'YYYY-MM-DD') as PerDate
+FROM Products
+/*
+结果集类似这样：
+ProductName	    UnitPrice	PerDate
+gold	        32.35	    12/29/2008
+silver	        11.56	    12/29/2008
+copper	        6.85	    12/29/2008
+*/
 
 
 
 
 
 ————————————————————————————————————————————————————
-42.
+58.SQL 快速参考
 
+//SQL 快速参考。可以打印它，以备日常使用
 
+/*
+SQL 语句
 
 
 
+语句	                        语法
 
+AND / OR	                SELECT column_name(s)
+                            FROM table_name
+                            WHERE condition
+                            AND|OR condition
 
+ALTER TABLE (add column)	ALTER TABLE table_name
+                            ADD column_name datatype
 
+ALTER TABLE (drop column)	ALTER TABLE table_name
+                            DROP COLUMN column_name
 
+AS (alias for column)	    SELECT column_name AS column_alias
+                            FROM table_name
 
+AS (alias for table)	    SELECT column_name
+                            FROM table_name  AS table_alias
 
+BETWEEN	                    SELECT column_name(s)
+                            FROM table_name
+                            WHERE column_name
+                            BETWEEN value1 AND value2
 
+CREATE DATABASE	            CREATE DATABASE database_name
 
+CREATE INDEX	            CREATE INDEX index_name
+                            ON table_name (column_name)
 
+CREATE TABLE	            CREATE TABLE table_name
+                            (
+                            column_name1 data_type,
+                            column_name2 data_type,
+                            .......
+                            )
 
+CREATE UNIQUE INDEX	        CREATE UNIQUE INDEX index_name
+                            ON table_name (column_name)
 
+CREATE VIEW	                CREATE VIEW view_name AS
+                            SELECT column_name(s)
+                            FROM table_name
+                            WHERE condition
 
+DELETE FROM	                DELETE FROM table_name
+                            (Note: Deletes the entire table!!)
+                            or
+                            DELETE FROM table_name
+                            WHERE condition
 
-————————————————————————————————————————————————————
-43.
+DROP DATABASE	            DROP DATABASE database_name
 
+DROP INDEX	                DROP INDEX table_name.index_name
 
+DROP TABLE	                DROP TABLE table_name
 
+GROUP BY	                SELECT column_name1,SUM(column_name2)
+                            FROM table_name
+                            GROUP BY column_name1
 
+HAVING	                    SELECT column_name1,SUM(column_name2)
+                            FROM table_name
+                            GROUP BY column_name1
+                            HAVING SUM(column_name2) condition value
 
+IN	                        SELECT column_name(s)
+                            FROM table_name
+                            WHERE column_name
+                            IN (value1,value2,..)
 
+INSERT INTO	                INSERT INTO table_name
+                            VALUES (value1, value2,....)
+                            or
+                            INSERT INTO table_name
+                            (column_name1, column_name2,...)
+                            VALUES (value1, value2,....)
 
+LIKE	                    SELECT column_name(s)
+                            FROM table_name
+                            WHERE column_name
+                            LIKE pattern
 
+ORDER BY	                SELECT column_name(s)
+                            FROM table_name
+                            ORDER BY column_name [ASC|DESC]
 
+SELECT	                    SELECT column_name(s)
+                            FROM table_name
+SELECT *	                SELECT *
+                            FROM table_name
 
-
-
-
-
-
-
-
-
-————————————————————————————————————————————————————
-44.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-————————————————————————————————————————————————————
-45.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-————————————————————————————————————————————————————
-46.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-————————————————————————————————————————————————————
-47.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-————————————————————————————————————————————————————
-48.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-————————————————————————————————————————————————————
-49.
-
-
-
-
-
-
-
-
-
-
-————————————————————————————————————————————————————
-50.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-————————————————————————————————————————————————————
-51.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-————————————————————————————————————————————————————
-52.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-————————————————————————————————————————————————————
-53.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-————————————————————————————————————————————————————
-54.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-————————————————————————————————————————————————————
-55.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-————————————————————————————————————————————————————
-56.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-————————————————————————————————————————————————————
-57.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-————————————————————————————————————————————————————
-58.
-
-
-
-
+SELECT DISTINCT	            SELECT DISTINCT column_name(s)
+                            FROM table_name
+
+SELECT INTO
+(used to create backup
+copies of tables)	        SELECT *
+                            INTO new_table_name
+                            FROM original_table_name
+                            or
+                            SELECT column_name(s)
+                            INTO new_table_name
+                            FROM original_table_name
+
+TRUNCATE TABLE
+(deletes only the data
+inside the table)	        TRUNCATE TABLE table_name
+
+UPDATE	                    UPDATE table_name
+                            SET column_name=new_value
+                            [, column_name=new_value]
+                            WHERE column_name=some_value
+
+WHERE	                    SELECT column_name(s)
+                            FROM table_name
+                            WHERE condition
+
+*/
 
 
 
