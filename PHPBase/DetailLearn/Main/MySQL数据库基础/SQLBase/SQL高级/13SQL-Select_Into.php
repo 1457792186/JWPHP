@@ -56,3 +56,46 @@ INTO Persons_Order_Backup
 FROM Persons
 INNER JOIN Orders
 ON Persons.Id_P=Orders.Id_P
+
+
+
+
+
+// 分页查询
+// 1、Mysql的分页查询：　
+
+SELECT * FROM
+	student
+LIMIT (PageNo - 1) * PageSize,PageSize;
+// 理解：(Limit n,m)  =>从第n行开始取m条记录，n从0开始算。
+
+// 2、Oracel的分页查询：
+
+
+SELECT * FROM
+	(
+       SELECT
+           ROWNUM rn ,*
+       FROM
+           student
+       WHERE
+           Rownum <= pageNo * pageSize
+   )
+WHERE
+   rn > (pageNo - 1) * pageSize
+// 理解：假设pageNo = 1，pageSize = 10，先从student表取出行号小于等于10的记录，然后再从这些记录取出rn大于0的记录，从而达到分页目的。ROWNUM从1开始。
+
+// 3、SQL Server分页查询：
+
+SELECT
+    TOP PageSize *
+FROM
+   (
+       SELECT
+           ROW_NUMBER () OVER (ORDER BY id ASC) RowNumber ,*
+       FROM
+           student
+   ) A
+WHERE
+   A.RowNumber > (PageNo - 1) * PageSize
+ // 理解：假设pageNo = 1，pageSize = 10，先按照student表的id升序排序，rownumber作为行号，然后再取出从第1行开始的10条记录
